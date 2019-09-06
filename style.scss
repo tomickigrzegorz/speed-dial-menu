@@ -53,7 +53,7 @@ body {
   [data-direction] {
     position: absolute;
     display: flex;
-    pointer-events: none;
+    visibility: hidden;
   }
 
   [data-direction=top] {
@@ -120,7 +120,7 @@ body {
 
   &:hover {
     [data-direction] {
-      pointer-events: auto;
+      visibility: visible;
     }
 
     [data-direction=top],
