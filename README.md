@@ -1,6 +1,6 @@
 # Speed dial menu
 Speed dial menu in pure css without using javascript. Simple construction.
-A working [exmaple](- [examples](https://tomik23.github.io/speed-dial/))
+A working [exmaple](https://tomik23.github.io/speed-dial/)
 
 ## Initialization
 Before the first use, clone this repository and install node dependencies:
