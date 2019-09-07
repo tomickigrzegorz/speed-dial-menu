@@ -26,3 +26,6 @@ Possible settings:
 
 > Each icon has ```style="transition-delay: XXXms;"``` check in index.html.
 This style sets the delay at which the icon should appear/hide.
+
+
+![Screenshot1](https://github.com/tomik23/speed-dial-menu/blob/master/example.jpg)
