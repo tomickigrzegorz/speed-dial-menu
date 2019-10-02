@@ -2,8 +2,8 @@
   --white: #fff;
   --gray: #464646;
   --gray-light: #ddd;
-  --blue: #1976d2;
-  --blue-darken: #0051a1;
+  --dial: #1976d2;
+  --dial-darken: #0051a1;
 }
 
 $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
@@ -11,7 +11,7 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 
 %hover-button-root {
-  background-color: var(--blue-darken);
+  background-color: var(--dial-darken);
 
   svg {
     transform: rotate(45deg);
@@ -178,7 +178,7 @@ body {
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background-color: var(--blue);
+    background-color: var(--dial);
     box-shadow: $box-shadow;
 
     &:hover {
