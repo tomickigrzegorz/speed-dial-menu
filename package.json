@@ -1,7 +1,6 @@
 {
   "name": "speed-dial",
-  "version": "1.0.1",
-  "description": "speed-dial javascript-version",
+  "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
