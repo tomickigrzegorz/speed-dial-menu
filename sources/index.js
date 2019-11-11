@@ -106,7 +106,7 @@ class SpeedDial {
         elType: 'div',
         elStyle: `width: 25px; height: 25px; background-repeat: no-repeat; background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${viebox}'%3E%3Cpath d='${path}'/%3E%3C/svg%3E\");`,
       });
-      speedDialItemButton.append(speedDialItemByttonDiv);
+      speedDialItemButton.appendChild(speedDialItemByttonDiv);
       speedDialItemByttonDiv.insertAdjacentHTML(
         'afterend',
         `<span style='${this.altPosition(
@@ -114,8 +114,8 @@ class SpeedDial {
           this.direction
         )}'>${name}</span>`
       );
-      speedDialItem.append(speedDialItemButton);
-      speedDialAction.append(speedDialItem);
+      speedDialItem.appendChild(speedDialItemButton);
+      speedDialAction.appendChild(speedDialItem);
       this.stepTransition -= this.steps;
     });
   }
