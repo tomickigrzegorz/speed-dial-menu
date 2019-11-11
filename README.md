@@ -1,5 +1,5 @@
 ## Speed dial menu css/js version
-Speed dial menu in pure css without using javascript. Simple construction.  
+Speed dial menu in pure css or js. Simple construction.  
 A working [EXAMPLE](https://tomik23.github.io/speed-dial-menu/index.html)
 
 ### Initialization
