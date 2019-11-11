@@ -34,7 +34,7 @@ This style sets the delay at which the icon should appear/hide.
 
 ### Configuration json
 
-```json
+```js
 const speedIcons = [
       {
         plusIcon: {
