@@ -13,7 +13,7 @@ module.exports = (env, argv) => {
     devtool: argv.mode === 'production' ? 'none' : 'source-map',
     mode: argv.mode === 'production' ? 'production' : 'development',
     entry: {
-      script: './sources/index.js',
+      SpeedDial: './sources/index.js',
     },
     output: {
       path: path.resolve(__dirname, './dist'),
