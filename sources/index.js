@@ -109,7 +109,7 @@ class SpeedDial {
       speedDialItemButton.appendChild(speedDialItemByttonDiv);
       speedDialItemByttonDiv.insertAdjacentHTML(
         'afterend',
-        `<span style='${this.altPosition(
+        `<span style='${this.tooltipPosition(
           this.position,
           this.direction
         )}'>${name}</span>`
@@ -120,7 +120,7 @@ class SpeedDial {
     });
   }
 
-  altPosition(position, direction) {
+  tooltipPosition(position, direction) {
     let style;
     switch (position) {
       case 'top-left':
