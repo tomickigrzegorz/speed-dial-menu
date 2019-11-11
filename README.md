@@ -90,5 +90,5 @@ key | valye | description
 ---- | :-------: | -----------
 `icons` | `String` | Used to show the tooltip on the hover event
 `steps` | `Number` | Used to show individual icons with a delay
-`data -> position` | `String` | Sets the main button for us in one of the four corners [bottom-right, bottom-left, top-right, top-left]
-`data -> direction` | `String` | In which direction are the small icons to be displayed [top, bottom, left, right]
+`data/position` | `String` | Sets the main button for us in one of the four corners [bottom-right, bottom-left, top-right, top-left]
+`data/direction` | `String` | In which direction are the small icons to be displayed [top, bottom, left, right]
