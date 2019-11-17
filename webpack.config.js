@@ -1,82 +1,101 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 function prodPlugin(plugin, argv) {
   return argv.mode === 'production' ? plugin : () => {};
 }
 
+// Configure Html Webpack Plugin
+const configureHtmlWebPackPlugin = () => {
+  return {
+    filename: 'index.html',
+    template: './sources/index.html',
+  };
+};
+
+// Configure Clean Webpack Plugin
+const configureCleanWebpackPlugin = () => {
+  return {
+    verbose: true,
+  };
+};
+
+// Configure Mini Css Extrac Plugin
+const configureMiniCssExtractPlugin = () => {
+  return {
+    filename: './[name].css',
+  };
+};
+
+// Configure Outpu
+const configureOutput = () => {
+  return {
+    path: path.resolve(__dirname, './dist'),
+    filename: './[name].js',
+    library: 'SpeedDial',
+    libraryExport: 'default',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
+  };
+};
+
+// Configure Babel loader
+const configureBabelLoader = () => {
+  return {
+    test: /\.js$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+    },
+  };
+};
+
+// Configure Style Loader
+const configureStyleLoader = mode => {
+  return {
+    test: /\.(css|sass|scss)$/,
+    use: [
+      mode === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+      {
+        loader: 'css-loader',
+        options: {
+          importLoaders: 2,
+          sourceMap: true,
+        },
+      },
+      {
+        loader: 'postcss-loader',
+        options: {
+          sourceMap: true,
+        },
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: true,
+        },
+      },
+    ],
+  };
+};
+
 module.exports = (env, argv) => {
   return {
     devtool: argv.mode === 'production' ? 'none' : 'source-map',
-    mode: argv.mode === 'production' ? 'production' : 'development',
+    mode: argv.mode,
     entry: {
       SpeedDial: './sources/index.js',
     },
-    output: {
-      path: path.resolve(__dirname, './dist'),
-      filename: './[name].js',
-      library: 'SpeedDial',
-      libraryExport: 'default',
-      libraryTarget: 'umd',
-      umdNamedDefine: true,
-    },
+    output: configureOutput(),
     module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-          },
-        },
-        {
-          test: /\.(css|sass|scss)$/,
-          use: [
-            argv.mode === 'development'
-              ? 'style-loader'
-              : MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-                sourceMap: true,
-              },
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                sourceMap: true,
-              },
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: true,
-              },
-            },
-          ],
-        },
-      ],
+      rules: [configureBabelLoader(), configureStyleLoader(argv.mode)],
     },
     plugins: [
-      prodPlugin(
-        new CleanWebpackPlugin({
-          verbose: true,
-        }),
-        argv
-      ),
-      prodPlugin(new CopyPlugin([]), argv),
-      new MiniCssExtractPlugin({
-        filename: './[name].css',
-      }),
-      new HtmlWebPackPlugin({
-        filename: 'index.html',
-        template: './sources/index.html',
-        // inject: false
-      }),
+      prodPlugin(new CleanWebpackPlugin(configureCleanWebpackPlugin()), argv),
+      new MiniCssExtractPlugin(configureMiniCssExtractPlugin()),
+      new HtmlWebPackPlugin(configureHtmlWebPackPlugin()),
     ],
   };
 };

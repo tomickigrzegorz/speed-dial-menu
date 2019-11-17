@@ -104,7 +104,7 @@ class SpeedDial {
 
       const speedDialItemByttonDiv = this.createElement({
         elType: 'div',
-        elStyle: `width: 25px; height: 25px; background-repeat: no-repeat; background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${viebox}'%3E%3Cpath d='${path}'/%3E%3C/svg%3E\");`,
+        elStyle: `width: 25px; height: 25px; background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${viebox}'%3E%3Cpath d='${path}'/%3E%3C/svg%3E");`,
       });
       speedDialItemButton.appendChild(speedDialItemByttonDiv);
       speedDialItemByttonDiv.insertAdjacentHTML(
