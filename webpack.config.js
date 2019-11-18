@@ -32,7 +32,7 @@ const configureMiniCssExtractPlugin = () => {
 // Configure Outpu
 const configureOutput = () => {
   return {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './docs'),
     filename: './[name].js',
     library: 'SpeedDial',
     libraryExport: 'default',
