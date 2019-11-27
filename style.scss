@@ -2,23 +2,41 @@
   --white: #fff;
   --gray: #464646;
   --gray-light: #ddd;
-  --dial: #1976d2;
-  --dial-darken: #0051a1;
+  --blue: #1976d2;
+  --blue-darken: #0051a1;
 }
 
 $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
   0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 
 %hover-button-root {
-  background-color: var(--dial-darken);
+  background-color: var(--blue-darken);
+
   svg {
     transform: rotate(45deg);
   }
 }
 
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .speed-dial {
   $self: &;
-  position: absolute;
+  position: relative;
 
   .flex-center {
     display: flex;
@@ -28,14 +46,13 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0,
 
   button {
     cursor: pointer;
-    outline: none;
     border: 0;
   }
 
   [data-direction] {
     position: absolute;
     display: flex;
-    visibility: hidden;
+    pointer-events: none;
   }
 
   [data-direction="top"] {
@@ -102,7 +119,21 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0,
 
   &:hover {
     [data-direction] {
-      visibility: visible;
+      pointer-events: auto;
+    }
+
+    [data-direction="top"],
+    [data-direction="bottom"] {
+      span {
+        right: 60px;
+      }
+    }
+
+    [data-direction="left"],
+    [data-direction="right"] {
+      span {
+        top: -20px;
+      }
     }
 
     #{$self}__item {
@@ -140,19 +171,17 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0,
     font-size: 11px;
     background-color: var(--gray);
     border-radius: 5px;
-    text-transform: capitalize;
-    font-family: Arial, Helvetica, sans-serif;
   }
 
   &__button--root {
     width: 56px;
     height: 56px;
     border-radius: 50%;
+    background-color: var(--blue);
     box-shadow: $box-shadow;
-    transition: opacity 200ms ease-in-out;
 
     &:hover {
-      filter: contrast(200%);
+      @extend %hover-button-root;
     }
   }
 }
