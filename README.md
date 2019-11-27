@@ -3,6 +3,8 @@ Speed dial menu, simple construction. You can set a button in every corner of th
 
 ![Screenshot1](https://github.com/tomik23/speed-dial-menu/blob/master/example.jpg)
 
+> A clean css version with no dependencies is also available -> [speed-dial-css](https://github.com/tomik23/speed-dial-menu/tree/speed-dial-css)
+
 
 ### Clone the repo and install dependencies
 ```bash
