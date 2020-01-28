@@ -7,23 +7,141 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>speed dial</title>
   <style>
-    * {
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
+    html {
+      font-family: sans-serif;
+      line-height: 1.15;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
     }
 
     html {
       height: 100%;
     }
 
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    *,
+    :after,
+    :before {
+      box-sizing: border-box;
+    }
+
     body {
-      height: 100%;
+      position: relative;
+      font-family: Proxima Nova Regular, Segoe UI, Roboto, Droid Sans, Helvetica Neue, Arial, sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      min-height: 100%;
+      color: #000;
+      background-color: #f5f5f5;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    .control {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 30px;
+    }
+
+    .radio {
+      margin: 16px 0;
+      display: block;
+      cursor: pointer;
+    }
+
+    .radio input {
+      display: none;
+    }
+
+    .radio input+span {
+      line-height: 22px;
+      height: 22px;
+      padding-left: 22px;
+      display: block;
+      position: relative;
+    }
+
+    .radio input+span:not(:empty) {
+      padding-left: 30px;
+    }
+
+    .radio input+span:before,
+    .radio input+span:after {
+      content: '';
+      width: 22px;
+      height: 22px;
+      display: block;
+      border-radius: 50%;
+      left: 0;
+      top: 0;
+      position: absolute;
+    }
+
+    .radio input+span:before {
+      background: #D1D7E3;
+      transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2)
+    }
+
+    .radio input+span:after {
+      background: #fff;
+      transform: scale(0.78);
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+    }
+
+    .radio input:checked+span:before {
+      transform: scale(1.04);
+      background: #5D9BFB;
+    }
+
+    .radio input:checked+span:after {
+      transform: scale(0.4);
+      transition: transform .3s ease;
+    }
+
+    .radio:hover input+span:before {
+      transform: scale(0.92);
+    }
+
+    .radio:hover input+span:after {
+      transform: scale(0.74);
+    }
+
+    .radio:hover input:checked+span:after {
+      transform: scale(0.4);
     }
   </style>
 </head>
 
 <body>
+  <div class="control">
+    <div>
+      <h3>CHANGE DISPLAY POSITION</h3>
+      <label class="radio">
+        <input type="radio" name="type" value="1" checked>
+        <span>bottom-right</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="type" value="2">
+        <span>bottom-left</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="type" value="3">
+        <span>top-right</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="type" value="4">
+        <span>top-left</span>
+      </label>
+    </div>
+  </div>
+
 
   <script>
     const speedIcons = [
@@ -66,10 +184,51 @@
         steps: 50,
         data: {
           position: 'bottom-right',  // bottom-right, bottom-left, top-right, top-left
-          direction: 'top', // top, bottom, left, right
+          direction: 'top' // top, bottom, left, right
         }
       })
     })
+
+
+    // better presentation
+
+    const radioElements = document.querySelectorAll('[name="type"]');
+    for (let i = 0; i < radioElements.length; i++) {
+      radioElements[i].addEventListener('click', function (e) {
+        const speedDial = document.querySelector('.speed-dial');
+        speedDial.remove();
+        let newPosition;
+        let newDairection;
+        switch (this.value) {
+          case '1':
+            newPosition = 'bottom-right'
+            newDairection = 'top'
+            break;
+          case '2':
+            newPosition = 'bottom-left'
+            newDairection = 'top'
+            break;
+          case '3':
+            newPosition = 'top-right'
+            newDairection = 'bottom'
+            break;
+          case '4':
+            newPosition = 'top-left'
+            newDairection = 'bottom'
+          default:
+            break;
+        }
+
+        new SpeedDial({
+          icons: speedIcons,
+          steps: 50,
+          data: {
+            position: newPosition,
+            direction: newDairection
+          }
+        })
+      })
+    }
   </script>
 
 </body>
