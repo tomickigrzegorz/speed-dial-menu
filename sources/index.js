@@ -26,14 +26,14 @@ class SpeedDial {
   }
 
   createElement({
-    elClass,
     elType,
-    elStyle,
     elData,
+    elClass,
+    elStyle,
     elVieBox,
-    elPath,
     elUrl,
     elTarget,
+    elPath,
   }) {
     const element =
       elType === 'svg'
