@@ -47,6 +47,7 @@ const speedIcons = [
             name: 'lightning',
             viebox: '0 0 32 32',
             url: 'https://url.com',
+            target: '_blank',
             path: 'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...'
           },
           {
@@ -54,6 +55,7 @@ const speedIcons = [
             name: 'wind',
             viebox: '0 0 32 32',
             url: 'https://url.com',
+            target: '_blank',
             path: 'M26.938 12c-1.656 0-3 1.344-3 3 0...'
           }
         ]
@@ -63,11 +65,13 @@ const speedIcons = [
 
 key | value | description
 ---- | :-------: | -----------
+`id` | `Number` | This element is used to show the order of items with icons
 `name` | `String` | The name that is used to show the tooltip on the hover event
 `viebox` | `String` | Viewbox svg
+`url` | `String` | The Url specifies the link's destination
+`target` | `String` | _blank/_self/_parent/_top
 `path` | `String` | Path svg
 `color` | `String` | Color will be used for the main button
-`id` | `Number` | This element is used to show the order of items with icons
 
 ### Sample configuration
 

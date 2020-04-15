@@ -25,7 +25,16 @@ class SpeedDial {
     });
   }
 
-  createElement({ elClass, elType, elStyle, elData, elVieBox, elPath, elUrl }) {
+  createElement({
+    elClass,
+    elType,
+    elStyle,
+    elData,
+    elVieBox,
+    elPath,
+    elUrl,
+    elTarget,
+  }) {
     const element =
       elType === 'svg'
         ? document.createElementNS('http://www.w3.org/2000/svg', elType)
@@ -46,7 +55,10 @@ class SpeedDial {
     }
     if (elUrl) {
       element.setAttribute('href', elUrl);
-      element.setAttribute('target', '_blank');
+      element.setAttribute('rel', 'noopener');
+    }
+    if (elTarget) {
+      element.setAttribute('target', elTarget);
     }
     if (elPath) {
       const newpath = document.createElementNS(
@@ -88,7 +100,7 @@ class SpeedDial {
     this.stepTransition = this.steps * 3 + 50;
 
     sortIcon.forEach(icon => {
-      const { name, viebox, url, path } = icon;
+      const { name, viebox, url, path, target } = icon;
 
       const speedDialItem = this.createElement({
         elClass: 'speed-dial__item flex-center',
@@ -100,6 +112,7 @@ class SpeedDial {
         elClass: 'speed-dial__button--small flex-center',
         elType: 'a',
         elUrl: url,
+        elTarget: target,
       });
 
       const speedDialItemByttonDiv = this.createElement({
