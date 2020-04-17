@@ -1,4 +1,4 @@
-## Speed dial menu
+# Speed dial menu
 Speed dial menu, simple construction. You can set a button in every corner of the page and display smaller buttons in each direction - [see section](https://github.com/tomik23/speed-dial-menu#sample-configuration). A working [EXAMPLE](https://tomik23.github.io/speed-dial-menu/)
 
 ![Screenshot1](https://github.com/tomik23/speed-dial-menu/blob/master/example.jpg)
@@ -6,7 +6,7 @@ Speed dial menu, simple construction. You can set a button in every corner of th
 > A clean css version with no dependencies is also available -> [speed-dial-css](https://github.com/tomik23/speed-dial-menu/tree/speed-dial-css)
 
 
-### Clone the repo and install dependencies
+## Clone the repo and install dependencies
 ```bash
 git clone 
 cd node-sharp-images
@@ -16,7 +16,7 @@ npm i
 
 ```
 
-### How to run
+## How to run
 Dev
 ```
 npm run dev
@@ -30,7 +30,7 @@ or
 yarn prod
 ```
 
-### Configuration json
+## Configuration json
 
 ```js
 const speedIcons = [
@@ -73,7 +73,7 @@ key | value | description
 `path` | `String` | Path svg
 `color` | `String` | Color will be used for the main button
 
-### Sample configuration
+## Sample configuration
 
 ```js
 const config = {
@@ -94,3 +94,9 @@ props | value | description
 `steps` | `Number` | Show icons with a delay
 `data/position` | `String` | Sets the main button for us in one of the four corners [bottom-right, bottom-left, top-right, top-left]
 `data/direction` | `String` | In which direction are the small icons to be displayed [top, bottom, left, right]
+
+## Browsers support
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Opera | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/vivaldi/vivaldi_48x48.png" alt="Vivaldi" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Vivaldi |
+| --------- | --------- | --------- | --------- | --------- |
+| IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
