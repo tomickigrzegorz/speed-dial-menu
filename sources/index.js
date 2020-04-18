@@ -1,8 +1,7 @@
 import './scss/style.scss';
 
 class SpeedDial {
-  constructor(options) {
-    const { icons, steps, data } = options;
+  constructor({ icons, steps, data }) {
     this.position = data.position;
     this.direction = data.direction;
     this.spanPosition = 60;
@@ -18,8 +17,7 @@ class SpeedDial {
       })
     );
 
-    icons.forEach(element => {
-      const { plusIcon, smallIcons } = element;
+    icons.forEach(({ plusIcon, smallIcons }) => {
       this.bigPlus(plusIcon);
       this.smallIcons(smallIcons);
     });
@@ -61,14 +59,15 @@ class SpeedDial {
       element.setAttribute('target', elTarget);
     }
     if (elPath) {
-      const newpath = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'path'
-      );
-      newpath.setAttributeNS(null, 'd', elPath);
-      element.appendChild(newpath);
+      elPath.forEach(elpath => {
+        const newpath = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'path'
+        );
+        newpath.setAttributeNS(null, 'd', elpath);
+        element.appendChild(newpath);
+      });
     }
-
     return element;
   }
 
@@ -94,14 +93,21 @@ class SpeedDial {
     this.svgElement(actionButton);
   }
 
+  pathSVG(paths, viebox) {
+    const svgElement = `width: 25px; height: 25px; background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${viebox}'`;
+    let test = '';
+    paths.forEach(path => {
+      test += `%3E%3Cpath d='${path}'%3E%3C/path`;
+    });
+    return `${svgElement + test}%3E%3C/svg%3E`;
+  }
+
   smallIcons(icons) {
     const speedDialAction = document.querySelector('.speed-dial__action');
     const sortIcon = icons.sort((a, b) => a.id - b.id);
     this.stepTransition = this.steps * 3 + 50;
 
-    sortIcon.forEach(icon => {
-      const { name, viebox, url, path, target } = icon;
-
+    sortIcon.forEach(({ name, viebox, url, path, target }) => {
       const speedDialItem = this.createElement({
         elClass: 'speed-dial__item flex-center',
         elType: 'div',
@@ -117,7 +123,7 @@ class SpeedDial {
 
       const speedDialItemByttonDiv = this.createElement({
         elType: 'div',
-        elStyle: `width: 25px; height: 25px; background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${viebox}'%3E%3Cpath d='${path}'/%3E%3C/svg%3E");`,
+        elStyle: this.pathSVG(path, viebox),
       });
       speedDialItemButton.appendChild(speedDialItemByttonDiv);
       speedDialItemByttonDiv.insertAdjacentHTML(

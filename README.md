@@ -38,7 +38,9 @@ const speedIcons = [
         plusIcon: {
           name: 'plus',
           viebox: '0 0 24 24',
-          path: 'M5 13h6v6c0 0.552 0.448...',
+          path: [
+            'M5 13h6v6c0 0.552 0.448...'
+          ],
           color: '#1976d2'
         },
         smallIcons: [
@@ -48,7 +50,9 @@ const speedIcons = [
             viebox: '0 0 32 32',
             url: 'https://url.com',
             target: '_blank',
-            path: 'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...'
+            path: [
+              'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...'
+            ]
           },
           {
             id: 2,
@@ -56,7 +60,9 @@ const speedIcons = [
             viebox: '0 0 32 32',
             url: 'https://url.com',
             target: '_blank',
-            path: 'M26.938 12c-1.656 0-3 1.344-3 3 0...'
+            path: [
+              'M26.938 12c-1.656 0-3 1.344-3 3 0...'
+            ]
           }
         ]
       },
@@ -70,7 +76,7 @@ key | value | description
 `viebox` | `String` | Viewbox svg
 `url` | `String` | The Url specifies the link's destination
 `target` | `String` | _blank/_self/_parent/_top
-`path` | `String` | Path svg
+`path` | `Array` | Path svg
 `color` | `String` | Color will be used for the main button
 
 ## Sample configuration
