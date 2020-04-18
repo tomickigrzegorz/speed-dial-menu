@@ -10,24 +10,25 @@ Speed dial menu, simple construction. You can set a button in every corner of th
 ```bash
 git clone 
 cd node-sharp-images
+```
+```
 yarn
 or
 npm i
-
 ```
 
 ## How to run
 Dev
 ```
-npm run dev
-or
 yarn dev
+or
+npm run dev
 ```
 Prod
 ```
-npm run prod
-or
 yarn prod
+or
+npm run prod
 ```
 
 ## Configuration json
