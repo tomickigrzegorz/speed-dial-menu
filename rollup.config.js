@@ -21,7 +21,7 @@ export default {
       externs: './sources/externs/externs.js'
     }),
     postcss({
-      extract: 'speedDial.css'
+      extract: 'speedDial.min.css'
     }),
     copy({
       targets: [
