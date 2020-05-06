@@ -1,4 +1,14 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>speed dial</title><style>html {
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>speed dial</title>
+  <link rel="stylesheet" href="./speedDial.css">
+  <style>
+    html {
       font-family: sans-serif;
       line-height: 1.15;
       -ms-text-size-adjust: 100%;
@@ -106,7 +116,36 @@
 
     .radio:hover input:checked+span:after {
       transform: scale(0.4);
-    }</style><link href="./SpeedDial.css" rel="stylesheet"></head><body><div class="control"><div><h3>CHANGE DISPLAY POSITION</h3><label class="radio"><input type="radio" name="type" value="1" checked="checked"> <span>bottom-right</span></label> <label class="radio"><input type="radio" name="type" value="2"> <span>bottom-left</span></label> <label class="radio"><input type="radio" name="type" value="3"> <span>top-right</span></label> <label class="radio"><input type="radio" name="type" value="4"> <span>top-left</span></label></div></div><script>const speedIcons = [
+    }
+  </style>
+</head>
+
+<body>
+  <div class="control">
+    <div>
+      <h3>CHANGE DISPLAY POSITION</h3>
+      <label class="radio">
+        <input type="radio" name="type" value="1" checked>
+        <span>bottom-right</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="type" value="2">
+        <span>bottom-left</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="type" value="3">
+        <span>top-right</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="type" value="4">
+        <span>top-left</span>
+      </label>
+    </div>
+  </div>
+
+
+  <script>
+    const speedIcons = [
       {
         plusIcon: {
           name: 'plus',
@@ -150,7 +189,7 @@
       },
     ]
 
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', function () {
       new SpeedDial({
         icons: speedIcons,
         steps: 50,
@@ -200,4 +239,10 @@
           }
         })
       })
-    }</script><script src="./SpeedDial.js"></script></body></html>
+    }
+  </script>
+
+  <script src="./speedDial.min.js"></script>
+</body>
+
+</html>

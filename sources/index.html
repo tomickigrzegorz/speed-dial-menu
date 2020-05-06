@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>speed dial</title>
+  <link rel="stylesheet" href="./speedDial.css">
   <style>
     html {
       font-family: sans-serif;
@@ -188,7 +189,7 @@
       },
     ]
 
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', function () {
       new SpeedDial({
         icons: speedIcons,
         steps: 50,
@@ -241,6 +242,7 @@
     }
   </script>
 
+  <script src="./speedDial.min.js"></script>
 </body>
 
 </html>

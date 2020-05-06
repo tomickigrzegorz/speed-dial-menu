@@ -59,7 +59,7 @@ class SpeedDial {
       element.setAttribute('target', elTarget);
     }
     if (elPath) {
-      elPath.forEach(elpath => {
+      elPath.forEach((elpath) => {
         const newpath = document.createElementNS(
           'http://www.w3.org/2000/svg',
           'path'
@@ -96,7 +96,7 @@ class SpeedDial {
   pathSVG(paths, viebox) {
     const svgElement = `width: 25px; height: 25px; background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${viebox}'`;
     let test = '';
-    paths.forEach(path => {
+    paths.forEach((path) => {
       test += `%3E%3Cpath d='${path}'%3E%3C/path`;
     });
     return `${svgElement + test}%3E%3C/svg%3E`;
