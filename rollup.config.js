@@ -1,8 +1,10 @@
 import copy from 'rollup-plugin-copy';
 import serve from 'rollup-plugin-serve';
+import babel from '@rollup/plugin-babel';
 import livereload from 'rollup-plugin-livereload';
 import postcss from 'rollup-plugin-postcss';
-import compiler from '@ampproject/rollup-plugin-closure-compiler';
+import del from 'rollup-plugin-delete';
+import { terser } from "rollup-plugin-terser";
 
 const { PRODUCTION } = process.env;
 
@@ -11,15 +13,12 @@ export default {
   output: {
     file: 'docs/speedDial.min.js',
     format: 'iife',
-    name: 'SpeedDial'
+    name: 'SpeedDial',
+    sourcemap: PRODUCTION ? false : true
   },
   plugins: [
-    compiler({
-      languageIn: 'ECMASCRIPT6',
-      language_out: 'ECMASCRIPT5',
-      compilation_level: 'ADVANCED',
-      externs: './sources/externs/externs.js'
-    }),
+    babel({ exclude: 'node_modules/**' }),
+    terser(),
     postcss({
       extract: 'speedDial.min.css'
     }),
@@ -28,6 +27,7 @@ export default {
         { src: 'sources/index.html', dest: 'docs/' }
       ]
     }),
+    (PRODUCTION && del({ targets: 'docs/*' })),
     (!PRODUCTION && serve({ open: true, contentBase: 'docs' })),
     (!PRODUCTION && livereload())
   ]

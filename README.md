@@ -34,73 +34,76 @@ npm run prod
 ## Configuration json
 
 ```js
-const speedIcons = [
+const speedIcons = {
+    plusIcon: {
+      name: 'plus',
+      viebox: '0 0 24 24',
+      path: [
+        'M5 13h6v6c0 0.552 0.448...'
+      ],
+      color: '#1976d2'
+    },
+    smallIcons: [
       {
-        plusIcon: {
-          name: 'plus',
-          viebox: '0 0 24 24',
-          path: [
-            'M5 13h6v6c0 0.552 0.448...'
-          ],
-          color: '#1976d2'
-        },
-        smallIcons: [
-          {
-            id: 1,
-            name: 'lightning',
-            viebox: '0 0 32 32',
-            url: 'https://url.com',
-            target: '_blank',
-            path: [
-              'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...'
-            ]
-          },
-          {
-            id: 2,
-            name: 'wind',
-            viebox: '0 0 32 32',
-            url: 'https://url.com',
-            target: '_blank',
-            path: [
-              'M26.938 12c-1.656 0-3 1.344-3 3 0...'
-            ]
-          }
+        id: 1,
+        name: 'lightning',
+        viebox: '0 0 32 32',
+        url: 'https://url.com',
+        target: '_blank',
+        path: [
+          'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...',
+          'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...',
         ]
       },
+      {
+        id: 2,
+        name: 'wind',
+        viebox: '0 0 32 32',
+        url: 'https://url.com',
+        target: '_blank',
+        path: [
+          'M26.938 12c-1.656 0-3 1.344-3 3 0...'
+        ]
+      }
     ]
+  }
 ```
 
 key | value | description
----- | :-------: | -----------
-`id` | `Number` | This element is used to show the order of items with icons
-`name` | `String` | The name that is used to show the tooltip on the hover event
-`viebox` | `String` | Viewbox svg
-`url` | `String` | The Url specifies the link's destination
-`target` | `String` | _blank/_self/_parent/_top
-`path` | `Array` | Path svg
-`color` | `String` | Color will be used for the main button
+---- | ------- | -----------
+id | number | This element is used to show the order of items with icons
+name | string | The name that is used to show the tooltip on the hover event
+viebox | string | Viewbox svg
+url | string | The Url specifies the link's destination
+target | string | _blank/_self/_parent/_top
+path | array | Path svg
+color | string | Color will be used for the main button
 
 ## Sample configuration
 
 ```js
-const config = {
+new SpeedDial({
   icons: speedIcons,
   steps: 50,
-   data: {
-     position: 'bottom-right',
-    direction: 'top',
+  scroll: { // object not required, button scroll to top
+    position: 100, // show the button after how many pixels after scrolling
+    color: '#333' // button color
+  },
+  data: {
+    position: 'bottom-right', // bottom-right, bottom-left, top-right, top-left
+    direction: 'top' // top, bottom, left, right
   }
-}
-
-new SpeedDial(config);
+});
 ```
 
-props | value | description
----- | :-------: | -----------
-`icons` | `String` | Show the tooltip on the hover event
-`steps` | `Number` | Show icons with a delay
-`data/position` | `String` | Sets the main button for us in one of the four corners [bottom-right, bottom-left, top-right, top-left]
-`data/direction` | `String` | In which direction are the small icons to be displayed [top, bottom, left, right]
+props | type | require | default | description
+---- | ------- | :-----------: | ----------- | ---------------
+icons | object | ✔ |  | Icons object. Show the tooltip on the hover event
+data/position | string | ✔ |  | Sets the main button for us in one of the four corners [bottom-right, bottom-left, top-right, top-left]
+data/direction | string | ✔ |  | In which direction are the small icons to be displayed [top, bottom, left, right]
+steps | number |  | `50` | Show icons with a delay
+scroll/position | number |  | `100`  | Scroll object is responsible for adding an additional button, clicking it scrolls the page to the top.<br />`position` - responsible for the appearance of the button after moving by a given number of pixels.
+scroll/color | string |  | `#333` | `color` - responsible for the background color of this button.
 
 ## Browsers support
 

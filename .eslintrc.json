@@ -1,4 +1,4 @@
-{
+module.exports = {
     "env": {
         "browser": true,
         "es6": true
@@ -25,6 +25,10 @@
                 "endOfLine": "auto"
             }
         ],
+        "quotes": [
+            2,
+            "duble"
+        ],
         "linebreak-style": [
             "error",
             "windows"
@@ -33,6 +37,10 @@
         "quotes": [
             "error",
             "single"
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
         ],
         "no-param-reassign": [
             2,
@@ -47,4 +55,4 @@
             }
         ]
     }
-}
+};
