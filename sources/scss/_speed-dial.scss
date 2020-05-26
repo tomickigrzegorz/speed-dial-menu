@@ -16,18 +16,36 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
 
 .speed-dial {
   $self: &;
-  position: absolute;
-
-  .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  position: fixed;
+  z-index: 999;
+  transition: bottom .4s ease;
 
   button {
     cursor: pointer;
     outline: none;
     border: 0;
+  }
+
+
+  &:hover {
+    [data-direction] {
+      visibility: visible;
+    }
+
+    #{$self}__item {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #{$self}__button--root {
+      @extend %hover-button-root;
+    }
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   [data-direction] {
@@ -98,21 +116,6 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     transform: scale(0);
   }
 
-  &:hover {
-    [data-direction] {
-      visibility: visible;
-    }
-
-    #{$self}__item {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    #{$self}__button--root {
-      @extend %hover-button-root;
-    }
-  }
-
   &__button--small {
     box-shadow: $box-shadow;
     width: 40px;
@@ -152,5 +155,45 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     &:hover {
       filter: contrast(200%);
     }
+  }
+}
+
+.speed-dial__top {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  opacity: 0;
+  bottom: 10px;
+  transition: opacity .3s linear;
+
+  &.show {
+    opacity: 1;
+  }
+
+  .icon__top {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+}
+
+.speed-dial__top-container {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  opacity: .4;
+  transition: opacity .4s ease;
+  margin: auto;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
   }
 }
