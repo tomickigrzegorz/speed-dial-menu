@@ -2,13 +2,7 @@ import './scss/style.scss';
 
 class SpeedDial {
   constructor(options) {
-    const {
-      icons,
-      scroll,
-      steps,
-      data
-    } = options;
-
+    const { icons, scroll, steps, data } = options;
     this.position = data.position;
     this.direction = data.direction;
     this.spanPosition = 60;
@@ -18,9 +12,9 @@ class SpeedDial {
     document.body.insertAdjacentElement(
       'beforeend',
       this.createElement({
-        elClass: 'speed-dial',
-        elType: 'div',
-        elData: ['position', this.position],
+        eClass: 'speed-dial',
+        eType: 'div',
+        eData: ['position', this.position],
       })
     );
 
@@ -28,58 +22,60 @@ class SpeedDial {
     this.smallIcons(icons.smallIcons);
 
     if (typeof scroll !== 'undefined') {
-      this.buttonTopColor = typeof scroll.color !== 'undefined' ? scroll.color : "#333";
-      this.scrollPosition = typeof scroll.position !== 'undefined' ? scroll.position : 100;
+      this.buttonTopColor =
+        typeof scroll.color !== 'undefined' ? scroll.color : '#333';
+      this.scrollPosition =
+        typeof scroll.position !== 'undefined' ? scroll.position : 100;
       if (this.position === 'bottom-left' || this.position === 'bottom-right') {
-        this.topButton();
+        this.topButtons();
       }
     }
   }
 
   createElement({
-    elType,
-    elData,
-    elClass,
-    elStyle,
-    elVieBox,
-    elUrl,
-    elTarget,
-    elPath,
+    eType,
+    eData,
+    eClass,
+    eStyle,
+    eViewBox,
+    eUrl,
+    eTarget,
+    ePath,
   }) {
     const element =
-      elType === 'svg'
-        ? document.createElementNS('http://www.w3.org/2000/svg', elType)
-        : document.createElement(elType);
+      eType === 'svg'
+        ? document.createElementNS('http://www.w3.org/2000/svg', eType)
+        : document.createElement(eType);
 
-    if (elData) {
-      const [data, value] = elData;
+    if (eData) {
+      const [data, value] = eData;
       element.setAttribute(`data-${data}`, value);
     }
-    if (elClass) {
-      element.setAttribute('class', elClass);
+    if (eClass) {
+      element.setAttribute('class', eClass);
     }
-    if (elStyle) {
-      element.setAttribute('style', elStyle);
+    if (eStyle) {
+      element.setAttribute('style', eStyle);
     }
-    if (elVieBox) {
-      element.setAttributeNS(null, 'viebox', elVieBox);
+    if (eViewBox) {
+      element.setAttributeNS(null, 'viewBox', eViewBox);
     }
-    if (elUrl) {
-      element.setAttribute('href', elUrl);
+    if (eUrl) {
+      element.setAttribute('href', eUrl);
       element.setAttribute('rel', 'noopener');
     }
-    if (elTarget) {
-      element.setAttribute('target', elTarget);
+    if (eTarget) {
+      element.setAttribute('target', eTarget);
     }
-    if (elPath) {
-      elPath.forEach((elpath) => {
+    if (ePath) {
+      for (let i = 0; i < ePath.length; i++) {
         const newpath = document.createElementNS(
           'http://www.w3.org/2000/svg',
           'path'
         );
-        newpath.setAttributeNS(null, 'd', elpath);
+        newpath.setAttributeNS(null, 'd', ePath[i]);
         element.appendChild(newpath);
-      });
+      }
     }
     return element;
   }
@@ -88,32 +84,32 @@ class SpeedDial {
     const speedDialBox = document.querySelector('.speed-dial');
     speedDialBox.appendChild(
       this.createElement({
-        elClass: 'speed-dial__button--root flex-center',
-        elType: 'button',
-        elStyle: `background-color: ${actionButton.color}`,
+        eClass: 'speed-dial__button--root flex-center',
+        eType: 'button',
+        eStyle: `background-color: ${actionButton.color}`,
       })
     );
 
     speedDialBox.insertAdjacentElement(
       'beforeend',
       this.createElement({
-        elClass: 'speed-dial__action',
-        elType: 'div',
-        elData: ['direction', this.direction],
+        eClass: 'speed-dial__action',
+        eType: 'div',
+        eData: ['direction', this.direction],
       })
     );
 
     this.svgElement(actionButton);
   }
 
-  topButton() {
+  topButtons() {
     const speedDialBox = document.querySelector('.speed-dial');
     speedDialBox.insertAdjacentElement(
       'afterend',
       this.createElement({
-        elClass: 'speed-dial__top',
-        elType: 'div',
-        elData: ['position', this.position]
+        eClass: 'speed-dial__top',
+        eType: 'div',
+        eData: ['position', this.position],
       })
     );
 
@@ -121,34 +117,44 @@ class SpeedDial {
     buttonTop.insertAdjacentElement(
       'beforeend',
       this.createElement({
-        elClass: 'speed-dial__top-container',
-        elType: 'div',
-        elStyle: `background-color: ${this.buttonTopColor};`,
+        eClass: 'speed-dial__top-container',
+        eType: 'div',
+        eStyle: `background-color: ${this.buttonTopColor};`,
       })
     );
 
-    const buttonTopContainer = document.querySelector('.speed-dial__top-container');
+    const buttonTopContainer = document.querySelector(
+      '.speed-dial__top-container'
+    );
     buttonTopContainer.appendChild(
       this.createElement({
-        elClass: 'icon__top',
-        elType: 'svg',
-        elVieBox: '0 0 24 24',
-        elPath: ['M7.406 15.422L6 14.016l6-6 6 6-1.406 1.406L12 10.828z'],
+        eClass: 'icon__top',
+        eType: 'svg',
+        eViewBox: '0 0 24 24',
+        ePath: ['M7.406 15.422L6 14.016l6-6 6 6-1.406 1.406L12 10.828z'],
       })
     );
 
     this.scrollToTop();
 
-    window.addEventListener("scroll", this.showScrollButton.bind(this.scrollPosition), false);
-    window.addEventListener("load", this.showScrollButton.bind(this.scrollPosition), false);
+    window.addEventListener(
+      'scroll',
+      this.showScrollButton.bind(this.scrollPosition),
+      false
+    );
+    window.addEventListener(
+      'load',
+      this.showScrollButton.bind(this.scrollPosition),
+      false
+    );
   }
 
   pathSVG(paths, viebox) {
     const svgElement = `width: 25px; height: 25px; background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${viebox}'`;
     let test = '';
-    paths.forEach((path) => {
-      test += `%3E%3Cpath d='${path}'%3E%3C/path`;
-    });
+    for (let i = 0; i < paths.length; i++) {
+      test += `%3E%3Cpath d='${paths[i]}'%3E%3C/path`;
+    }
     return `${svgElement + test}%3E%3C/svg%3E`;
   }
 
@@ -157,23 +163,24 @@ class SpeedDial {
     const sortIcon = icons.sort((a, b) => a.id - b.id);
     this.stepTransition = this.steps * 3 + 50;
 
-    sortIcon.forEach(({ name, viebox, url, path, target }) => {
+    for (let i = 0; i < sortIcon.length; i++) {
+      const { name, viebox, url, path, target } = sortIcon[i];
       const speedDialItem = this.createElement({
-        elClass: 'speed-dial__item flex-center',
-        elType: 'div',
-        elStyle: `transition-delay: ${this.stepTransition}ms;`,
+        eClass: 'speed-dial__item flex-center',
+        eType: 'div',
+        eStyle: `transition-delay: ${this.stepTransition}ms;`,
       });
 
       const speedDialItemButton = this.createElement({
-        elClass: 'speed-dial__button--small flex-center',
-        elType: 'a',
-        elUrl: url,
-        elTarget: target,
+        eClass: 'speed-dial__button--small flex-center',
+        eType: 'a',
+        eUrl: url,
+        eTarget: target,
       });
 
       const speedDialItemByttonDiv = this.createElement({
-        elType: 'div',
-        elStyle: this.pathSVG(path, viebox),
+        eType: 'div',
+        eStyle: this.pathSVG(path, viebox),
       });
       speedDialItemButton.appendChild(speedDialItemByttonDiv);
       speedDialItemByttonDiv.insertAdjacentHTML(
@@ -186,7 +193,7 @@ class SpeedDial {
       speedDialItem.appendChild(speedDialItemButton);
       speedDialAction.appendChild(speedDialItem);
       this.stepTransition -= this.steps;
-    });
+    }
   }
 
   tooltipPosition(position, direction) {
@@ -197,6 +204,12 @@ class SpeedDial {
           direction === 'bottom'
             ? `left: ${this.spanPosition}px`
             : `top: ${this.spanPosition}px`;
+        break;
+      case 'bottom-left':
+        style =
+          direction === 'top'
+            ? `left: ${this.spanPosition}px`
+            : `bottom: ${this.spanPosition}px`;
         break;
       case 'top-right':
         style =
@@ -210,12 +223,6 @@ class SpeedDial {
             ? `right: ${this.spanPosition}px`
             : `bottom: ${this.spanPosition}px`;
         break;
-      case 'bottom-left':
-        style =
-          direction === 'top'
-            ? `left: ${this.spanPosition}px`
-            : `bottom: ${this.spanPosition}px`;
-        break;
       default:
         break;
     }
@@ -227,10 +234,10 @@ class SpeedDial {
     const speedDialRoot = document.querySelector('.speed-dial__button--root');
     speedDialRoot.appendChild(
       this.createElement({
-        elClass: 'icon icon__plus',
-        elType: 'svg',
-        elVieBox: viebox,
-        elPath: path,
+        eClass: 'icon icon__plus',
+        eType: 'svg',
+        eViewBox: viebox,
+        ePath: path,
       })
     );
   }
@@ -238,7 +245,7 @@ class SpeedDial {
   showScrollButton() {
     const scrollPosition = this;
     const buttonTop = document.querySelector('.speed-dial__top');
-    let scroll = window.pageYOffset;
+    const scroll = window.pageYOffset;
 
     if (scroll > scrollPosition) {
       buttonTop.classList.add('show');
@@ -251,11 +258,11 @@ class SpeedDial {
 
   scrollToTop() {
     const buttonTop = document.querySelector('.speed-dial__top');
-    buttonTop.addEventListener('click', e => {
+    buttonTop.addEventListener('click', (e) => {
       e.preventDefault();
       window.scrollTo({
-        'top': 0,
-        'behavior': 'smooth',
+        top: 0,
+        behavior: 'smooth',
       });
     });
   }
