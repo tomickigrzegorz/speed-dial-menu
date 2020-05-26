@@ -1,5 +1,5 @@
 # Speed dial menu
-Speed dial menu, simple construction. You can set a button in every corner of the page and display smaller buttons in each direction - [see section](https://github.com/tomik23/speed-dial-menu#sample-configuration). A working [EXAMPLE](https://tomik23.github.io/speed-dial-menu/)
+Speed dial menu, simple construction. You can set a button in every corner of the page and display smaller buttons in each direction. It is also possible to activate the 'scroll up' button - [see section](https://github.com/tomik23/speed-dial-menu#sample-configuration). A working [EXAMPLE](https://tomik23.github.io/speed-dial-menu/)
 
 ![Screenshot1](https://github.com/tomik23/speed-dial-menu/blob/master/example.jpg)
 
