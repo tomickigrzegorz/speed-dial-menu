@@ -1,4 +1,6 @@
-docs/*
+docs/
 node_modules/
+index.html
+babel.config.js
 .eslintrc.js
 rollup.config.js

@@ -1,33 +1,50 @@
-# Speed dial menu
-Speed dial menu, simple construction. You can set a button in every corner of the page and display smaller buttons in each direction. It is also possible to activate the 'scroll up' button - [see section](https://github.com/tomik23/speed-dial-menu#sample-configuration). A working [EXAMPLE](https://tomik23.github.io/speed-dial-menu/)
+<h1 align=center>Speed dial menu</h1>
 
-![Screenshot1](https://github.com/tomik23/speed-dial-menu/blob/master/example.jpg)
+<p align="center">
+  <img src="https://img.shields.io/github/package-json/v/tomik23/speed-dial-menu">
+  <img src="https://img.shields.io/github/size/tomik23/speed-dial-menu/docs/speedDial.min.js">
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg">
+  </a>
+</p>
+
+<p align=center>Speed dial menu, simple construction. You can set a button in every corner of the page and display smaller buttons in each direction. It is also possible to activate the 'scroll up' button</p>
+
+<p align=center>
+  <img src="./example.png">
+</p>
+
+## Demo
+
+See the demo - [example](https://tomik23.github.io/speed-dial-menu/)
+
 
 > A clean css version with no dependencies is also available -> [speed-dial-css](https://github.com/tomik23/speed-dial-menu/tree/speed-dial-css)
+
 
 
 ## Clone the repo and install dependencies
 ```bash
 git clone 
-cd node-sharp-images
+cd speed-dial-menu
 ```
-```
+```js
 yarn
-or
+// or
 npm i
 ```
 
 ## How to run
 Dev
-```
+```js
 yarn dev
-or
+// or
 npm run dev
 ```
 Prod
-```
+```js
 yarn prod
-or
+// or
 npm run prod
 ```
 

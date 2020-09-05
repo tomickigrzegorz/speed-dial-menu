@@ -1,18 +1,16 @@
-import './scss/style.scss';
-
 class SpeedDial {
-  constructor(options) {
-    const { icons, scroll, steps, data } = options;
+  constructor({ icons, scroll, steps, data }) {
     this.position = data.position;
     this.direction = data.direction;
     this.spanPosition = 60;
     this.steps = steps || 50;
     this.scroll = scroll;
     this.stepTransition = 100;
+
     document.body.insertAdjacentElement(
       'beforeend',
       this.createElement({
-        eClass: 'speed-dial',
+        eClass: `speed-dial`,
         eType: 'div',
         eData: ['position', this.position],
       })
@@ -139,12 +137,12 @@ class SpeedDial {
 
     window.addEventListener(
       'scroll',
-      this.showScrollButton.bind(this.scrollPosition),
+      this.showScrollButton.bind(this),
       false
     );
     window.addEventListener(
       'load',
-      this.showScrollButton.bind(this.scrollPosition),
+      this.showScrollButton.bind(this),
       false
     );
   }
@@ -243,7 +241,7 @@ class SpeedDial {
   }
 
   showScrollButton() {
-    const scrollPosition = this;
+    const { scrollPosition } = this;
     const buttonTop = document.querySelector('.speed-dial__top');
     const scroll = window.pageYOffset;
 
@@ -258,8 +256,8 @@ class SpeedDial {
 
   scrollToTop() {
     const buttonTop = document.querySelector('.speed-dial__top');
-    buttonTop.addEventListener('click', (e) => {
-      e.preventDefault();
+    buttonTop.addEventListener('click', (event) => {
+      event.preventDefault();
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
