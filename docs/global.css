@@ -1,0 +1,110 @@
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: Proxima Nova Regular, Segoe UI, Roboto, Droid Sans, Helvetica Neue, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  min-height: 100%;
+  color: #000;
+  background-color: #f5f5f5;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  height: 200%;
+}
+
+.control {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+}
+
+.radio {
+  margin: 16px 0;
+  display: block;
+  cursor: pointer;
+}
+
+.radio input {
+  display: none;
+}
+
+.radio input+span {
+  line-height: 22px;
+  height: 22px;
+  padding-left: 22px;
+  display: block;
+  position: relative;
+}
+
+.radio input+span:not(:empty) {
+  padding-left: 30px;
+}
+
+.radio input+span:before,
+.radio input+span:after {
+  content: '';
+  width: 22px;
+  height: 22px;
+  display: block;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+
+.radio input+span:before {
+  background: #D1D7E3;
+  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2)
+}
+
+.radio input+span:after {
+  background: #fff;
+  transform: scale(0.78);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+}
+
+.radio input:checked+span:before {
+  transform: scale(1.04);
+  background: #5D9BFB;
+}
+
+.radio input:checked+span:after {
+  transform: scale(0.4);
+  transition: transform .3s ease;
+}
+
+.radio:hover input+span:before {
+  transform: scale(0.92);
+}
+
+.radio:hover input+span:after {
+  transform: scale(0.74);
+}
+
+.radio:hover input:checked+span:after {
+  transform: scale(0.4);
+}

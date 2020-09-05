@@ -1,58 +1,24 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true
+    env: {
+        browser: true,
+        node: true,
+        es6: true,
     },
-    "extends": [
-        "airbnb-base",
-        "prettier"
-    ],
-    "plugins": [
-        "prettier"
-    ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+    extends: ['eslint:recommended'],
+    plugins: ['prettier'],
+    rules: {
+        'prettier/prettier': [
+            'warn', {
+                semi: true,
+                singleQuote: true,
+                tabWidth: 2,
+                endOfLine: 'auto',
+                printWidth: 80,
+            },
+        ],
+        'comma-dangle': ['error', 'only-multiline'],
+        'linebreak-style': ['error', 'windows'],
+        'no-param-reassign': [2, { props: false, },],
     },
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "rules": {
-        "prettier/prettier": [
-            "error",
-            {
-                "endOfLine": "auto"
-            }
-        ],
-        "quotes": [
-            2,
-            "duble"
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "class-methods-use-this": "off",
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "no-param-reassign": [
-            2,
-            {
-                "props": false
-            }
-        ],
-        "no-plusplus": [
-            "error",
-            {
-                "allowForLoopAfterthoughts": true
-            }
-        ]
-    }
+    parser: '@babel/eslint-parser',
 };
