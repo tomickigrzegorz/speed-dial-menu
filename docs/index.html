@@ -14,21 +14,26 @@
     <div id="control" class="control"></div>
 
     <script>
-      const speedIcons = {
-        plusIcon: {
+      var speedIcons = {
+        iconPlus: {
           name: 'plus',
           viebox: '0 0 24 24',
-          path: [
-            'M5 13h6v6c0 0.552 0.448 1 1 1s1-0.448 1-1v-6h6c0.552 0 1-0.448 1-1s-0.448-1-1-1h-6v-6c0-0.552-0.448-1-1-1s-1 0.448-1 1v6h-6c-0.552 0-1 0.448-1 1s0.448 1 1 1z'
-          ],
+          path: ['M3 6h18v2.016h-18v-2.016zM3 12.984v-1.969h18v1.969h-18zM3 18v-2.016h18v2.016h-18z'],
           color: '#1976d2'
         },
-        smallIcons: [
+        iconTop: {
+          name: 'top',
+          viebox: '0 0 24 24',
+          path: ['M7.406 15.422L6 14.016l6-6 6 6-1.406 1.406L12 10.828z'],
+          color: 'red'
+        },
+        iconsSmall: [
           {
             id: 1,
             name: 'lightning',
             viebox: '0 0 32 32',
             url: 'https://www.bbc.com/weather',
+            target: '_blank',
             path: [
               'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32 8.427c0-3.072-2.5-5.57-5.573-5.57-.15 0-.298.005-.447.017C24.535 1.072 22.356 0 20 0c-2.355 0-4.535 1.072-5.98 2.874-.148-.012-.298-.017-.449-.017-3.07 0-5.57 2.499-5.57 5.57 0 .322.043.633.094.94-.034.044-.074.085-.107.13-.327-.047-.655-.07-.987-.07-3.859 0-7 3.141-7 7s3.141 7 7 7c.856 0 1.693-.156 2.482-.458.069.06.151.102.221.16l1.77-1.18c-.59-.418-1.141-.883-1.602-1.438-.813.572-1.801.915-2.871.915-2.762 0-5-2.237-5-5 0-2.76 2.238-5 5-5 .676 0 1.316.138 1.902.38.035-.068.078-.125.113-.19.352-.642.785-1.229 1.292-1.753 1.443-1.493 3.448-2.438 5.693-2.438 3.107 0 5.771 1.792 7.096 4.38.353-.146.729-.24 1.117-.302l.787-.078c.771 0 1.492.19 2.145.5.707.339 1.314.836 1.79 1.45.656.845 1.065 1.896 1.065 3.05 0 2.763-2.238 5-5 5-1.07 0-2.057-.344-2.871-.915-.875 1.055-2.027 1.848-3.322 2.348l-.374.746 1.141 1.141c1.066-.415 2.064-1.012 2.944-1.777.789.302 1.626.458 2.482.458 3.859 0 7-3.141 7-7 0-1.604-.565-3.068-1.479-4.25.911-.992 1.479-2.301 1.479-3.75zm-2.902 2.352c-1.155-.84-2.563-1.352-4.098-1.352-.332 0-.66.023-.987.07-1.867-2.543-4.814-4.07-8.013-4.07-2.133 0-4.145.691-5.809 1.897.467-1.428 1.796-2.467 3.379-2.467.484 0 .941.098 1.359.271C15.878 3.279 17.781 2 19.999 2s4.122 1.279 5.068 3.128c.421-.173.88-.271 1.359-.271 1.974 0 3.573 1.599 3.573 3.57 0 .906-.348 1.723-.902 2.352z'
             ]
@@ -59,20 +64,21 @@
       window.addEventListener('DOMContentLoaded', function () {
         new SpeedDial({
           icons: speedIcons,
+          // animation time for small buttons in ms 
           steps: 50,
-          scroll: { // object not required, button scroll to top
-            position: 100, // show the button after how many pixels after scrolling
-            color: 'red' // button color
-          },
+          // show button 'scroll-top' at 100px - not required
+          position: 100,
           data: {
-            position: 'bottom-right', // bottom-right, bottom-left, top-right, top-left
-            direction: 'top' // top, bottom, left, right
+            // bottom-right, bottom-left, top-right, top-left
+            position: 'bottom-right',
+            // top, bottom, left, right
+            direction: 'top'
           }
         })
       })
     </script>
 
-    <script src="./presentation.js"></script>
+    <!-- <script src="./presentation.js"></script> -->
     <script src="./speedDial.min.js"></script>
   </body>
 
