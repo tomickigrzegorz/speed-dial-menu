@@ -19,7 +19,7 @@ export default {
       exclude: 'node_modules/**',
       babelHelpers: 'bundled'
     }),
-    terser(),
+    PRODUCTION && terser(),
     !PRODUCTION && serve({ open: true, contentBase: 'docs' }),
     !PRODUCTION && livereload()
   ]

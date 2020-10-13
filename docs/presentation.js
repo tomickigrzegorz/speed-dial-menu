@@ -77,10 +77,7 @@ window.addEventListener('DOMContentLoaded', () => {
       new SpeedDial({
         icons: speedIcons,
         steps: 50,
-        scroll: {
-          position: 100,
-          color: 'red',
-        },
+        position: 100,
         data: {
           position: newPosition,
           direction: newDairection,

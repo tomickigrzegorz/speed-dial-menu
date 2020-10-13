@@ -52,15 +52,19 @@ npm run prod
 
 ```js
 const speedIcons = {
-    plusIcon: {
+    iconPlus: {
       name: 'plus',
-      viebox: '0 0 24 24',
-      path: [
-        'M5 13h6v6c0 0.552 0.448...'
-      ],
+      viebox: '0 0 20 20',
+      path: ['M0 3h20v2h-20v-2zM0 ...'],
       color: '#1976d2'
     },
-    smallIcons: [
+    iconTop: {
+      name: 'top',
+      viebox: '0 0 24 24',
+      path: ['M7.406 15.422L6 ...'],
+      color: 'red'
+    },
+    iconsSmall: [
       {
         id: 1,
         name: 'lightning',
@@ -78,9 +82,7 @@ const speedIcons = {
         viebox: '0 0 32 32',
         url: 'https://url.com',
         target: '_blank',
-        path: [
-          'M26.938 12c-1.656 0-3 1.344-3 3 0...'
-        ]
+        path: [ 'M26.938 12c-1.656 0-3 1.344-3 3 0...']
       }
     ]
   }
@@ -90,25 +92,26 @@ key | value | description
 ---- | ------- | -----------
 id | number | This element is used to show the order of items with icons
 name | string | The name that is used to show the tooltip on the hover event
-viebox | string | Viewbox svg
-url | string | The Url specifies the link's destination
-target | string | _blank/_self/_parent/_top
-path | array | Path svg
-color | string | Color will be used for the main button
+viebox | string | Viewbox for svg
+url | string | The Url specifies the link's destination, not required
+target | string | _blank/_self/_parent/_top, not required
+path | array | Path svg, can be an array of several paths
+color | string | Color will be used for the main button or top button
 
 ## Sample configuration
 
 ```js
 new SpeedDial({
   icons: speedIcons,
+  // delay animation time for small buttons in ms 
   steps: 50,
-  scroll: { // object not required, button scroll to top
-    position: 100, // show the button after how many pixels after scrolling
-    color: '#333' // button color
-  },
+  // show button 'scroll-top' at 100px - not required
+  position: 100,
   data: {
-    position: 'bottom-right', // bottom-right, bottom-left, top-right, top-left
-    direction: 'top' // top, bottom, left, right
+    // bottom-right, bottom-left, top-right, top-left
+    position: 'bottom-right',
+    // top, bottom, left, right
+    direction: 'top'
   }
 });
 ```
@@ -116,11 +119,10 @@ new SpeedDial({
 props | type | require | default | description
 ---- | ------- | :-----------: | ----------- | ---------------
 icons | object | ✔ |  | Icons object. Show the tooltip on the hover event
+steps | number |  | `50` | Show icons with a delay animation
+position | number |  | null  | Show button 'scroll-top-top' at 100px
 data/position | string | ✔ |  | Sets the main button for us in one of the four corners [bottom-right, bottom-left, top-right, top-left]
 data/direction | string | ✔ |  | In which direction are the small icons to be displayed [top, bottom, left, right]
-steps | number |  | `50` | Show icons with a delay
-scroll/position | number |  | `100`  | Scroll object is responsible for adding an additional button, clicking it scrolls the page to the top.<br />`position` - responsible for the appearance of the button after moving by a given number of pixels.
-scroll/color | string |  | `#333` | `color` - responsible for the background color of this button.
 
 ## Browsers support
 
