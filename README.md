@@ -80,8 +80,7 @@ const speedIcons = {
         id: 2,
         name: 'wind',
         viebox: '0 0 32 32',
-        url: 'https://url.com',
-        target: '_blank',
+        className: 'wind',
         path: [ 'M26.938 12c-1.656 0-3 1.344-3 3 0...']
       }
     ]
@@ -95,6 +94,7 @@ name | string | The name that is used to show the tooltip on the hover event
 viebox | string | Viewbox for svg
 url | string | The Url specifies the link's destination, not required
 target | string | _blank/_self/_parent/_top, not required
+className | string | An additional class after which we can make events, not required
 path | array | Path svg, can be an array of several paths
 color | string | Color will be used for the main button or top button
 
