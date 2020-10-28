@@ -156,18 +156,30 @@ class SpeedDial {
     let stepTrans = this.options.steps * sortIcon.length + 50;
 
     for (let i = 0; i < sortIcon.length; i++) {
-      const { name, viebox, url, path, target } = sortIcon[i];
+      const { className, name, viebox, url, path, target } = sortIcon[i];
+      const extendClass = className || '';
       const speedDialItem = this.element({
-        el: 'item',
+        el: `item ${extendClass}`,
         type: 'div',
         style: `transition-delay: ${stepTrans}ms;`,
       });
 
+      let options = {};
+      if (url) {
+        options = {
+          type: 'a',
+          url,
+          target,
+        };
+      } else {
+        options = {
+          type: 'div',
+        };
+      }
+
       const speedDialItemButton = this.element({
         el: 'button--small',
-        type: 'a',
-        url,
-        target,
+        ...options,
       });
 
       const speedDialItemByttonDiv = this.element({
