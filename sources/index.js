@@ -21,7 +21,7 @@ class SpeedDial {
       })
     );
 
-    this.iconPlus(option.icons.iconPlus);
+    this.iconBig(option.icons.iconPlus);
     this.iconSmall(option.icons.iconsSmall);
 
     if (
@@ -64,7 +64,10 @@ class SpeedDial {
           'http://www.w3.org/2000/svg',
           'path'
         );
-        newpath.setAttributeNS(null, 'd', path[i]);
+        const pathType = Array.isArray(path[i]) ? path[i][i] : path[i];
+        Object.keys(pathType).map((key) => {
+          newpath.setAttributeNS(null, key, pathType[key]);
+        });
         element.appendChild(newpath);
       }
     }
@@ -75,7 +78,7 @@ class SpeedDial {
     return document.querySelector(`.${el}`);
   };
 
-  iconPlus = (actionButton) => {
+  iconBig = (actionButton) => {
     const speedDialBox = this.select('speed-dial');
     speedDialBox.appendChild(
       this.element({
@@ -132,7 +135,7 @@ class SpeedDial {
         el: 'icon__top',
         type: 'svg',
         viebox: options.viebox,
-        path: [options.path],
+        path: [...options.path],
       })
     );
 
@@ -142,12 +145,19 @@ class SpeedDial {
   };
 
   path = (paths, viebox) => {
-    const svgElement = `background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${viebox}'`;
+    let svgElement = '';
     let path = '';
     for (let i = 0; i < paths.length; i++) {
-      path += `%3E%3Cpath d='${paths[i]}'%3E%3C/path`;
+      svgElement = `background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${viebox}'`;
+
+      let element = '';
+      Object.keys(paths[i]).map((key) => {
+        let val = key === 'fill' ? paths[i][key].replace('#', '%23') : paths[i][key];
+        element += ` ${key}='${val}'`;
+      });
+      path += `%3E%3Cpath ${element}%3E%3C/path`;
     }
-    return `${svgElement + path}%3E%3C/svg%3E`;
+    return `${svgElement}${path}%3E%3C/svg%3E`;
   };
 
   iconSmall = (icons) => {
@@ -184,7 +194,7 @@ class SpeedDial {
 
       const speedDialItemByttonDiv = this.element({
         type: 'div',
-        style: this.path(path, viebox),
+        style: this.path([...path], viebox),
       });
 
       speedDialItemButton.appendChild(speedDialItemByttonDiv);
