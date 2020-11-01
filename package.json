@@ -1,7 +1,7 @@
 {
   "name": "speed-dial",
-  "version": "1.0.6",
-  "description": "You can set a button in every corner of the page and display smaller buttons in each direction.",
+  "version": "1.0.7",
+  "description": "You can set a button in every corner of the page and display smaller buttons in each direction",
   "main": "docs/speedDial.min.js",
   "author": "Grzegorz Tomicki",
   "license": "MIT",
@@ -12,11 +12,27 @@
     "build": "rollup -c --environment PRODUCTION",
     "sass:dev": "node-sass -w -r sources/scss/style.scss docs/speedDial.min.css",
     "sass:prod": "node-sass sources/scss/style.scss docs/speedDial.min.css --output-style compressed",
-    "postcss": "postcss docs/speedDial.min.css sugarss docs/speedDial.min.css -r -p"
+    "postcss": "postcss docs/speedDial.min.css docs/speedDial.min.css -r"
   },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage": "https://github.com/tomik23/speed-dial-menue#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/tomik23/speed-dial-menu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tomik23/speed-dial-menu/issues"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -24,25 +40,21 @@
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@rollup/plugin-babel": "^5.2.1",
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.0.1",
     "concurrently": "^5.3.0",
     "core-js": "^3.6.5",
     "cssnano": "^4.1.10",
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "node-sass": "^4.14.1",
-    "postcss-cli": "^8.1.0",
+    "node-sass": "^5.0.0",
+    "postcss": "^8.1.4",
+    "postcss-cli": "^8.2.0",
     "postcss-css-variables": "^0.17.0",
     "prettier": "^2.1.2",
-    "rollup": "^2.32.1",
+    "rollup": "^2.33.0",
     "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-serve": "^1.0.4",
+    "rollup-plugin-serve": "^1.1.0",
     "rollup-plugin-terser": "^7.0.2"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not op_mini all"
-  ]
+  }
 }
