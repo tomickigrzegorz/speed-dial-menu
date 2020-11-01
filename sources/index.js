@@ -4,6 +4,7 @@ class SpeedDial {
       sPos: 60,
       steps: 50,
       stepTrans: 100,
+      modal: false,
       position: null,
       topBtn: 'speed-dial__top',
     };
@@ -30,6 +31,10 @@ class SpeedDial {
     ) {
       this.topButtons(option.icons.iconTop);
     }
+
+    if (option.modal) {
+      this.modal();
+    }
   }
 
   element = ({ type, data, el, style, viebox, url, target, path }) => {
@@ -46,14 +51,14 @@ class SpeedDial {
       element.setAttribute('class', el);
     }
     if (style) {
-      element.setAttribute('style', style);
+      element.style = style;
     }
     if (url) {
-      element.setAttribute('href', url);
-      element.setAttribute('rel', 'noopener');
+      element.href = url;
+      element.rel = 'noopener';
     }
     if (target) {
-      element.setAttribute('target', target);
+      element.target = target;
     }
     if (viebox) {
       element.setAttributeNS(null, 'viewBox', viebox);
@@ -74,9 +79,7 @@ class SpeedDial {
     return element;
   };
 
-  select = (el) => {
-    return document.querySelector(`.${el}`);
-  };
+  select = (el) => document.querySelector(`.${el}`);
 
   iconBig = (actionButton) => {
     const speedDialBox = this.select('speed-dial');
@@ -152,7 +155,8 @@ class SpeedDial {
 
       let element = '';
       Object.keys(paths[i]).map((key) => {
-        let val = key === 'fill' ? paths[i][key].replace('#', '%23') : paths[i][key];
+        let val =
+          key === 'fill' ? paths[i][key].replace('#', '%23') : paths[i][key];
         element += ` ${key}='${val}'`;
       });
       path += `%3E%3Cpath ${element}%3E%3C/path`;
@@ -228,15 +232,21 @@ class SpeedDial {
     return style;
   };
 
+  modal = () => {
+    const speedDialBox = this.select('speed-dial');
+    const modal = document.createElement('div');
+    modal.className = 'speed-dial-modal';
+    speedDialBox.insertAdjacentElement('afterend', modal);
+  };
+
   showScrollButton = () => {
+    const speedDialBox = this.select('speed-dial');
     const { position, topBtn } = this.options;
     const buttonTop = this.select(topBtn);
     const scrollCheck = window.pageYOffset > position ? true : false;
 
     buttonTop.classList[scrollCheck ? 'add' : 'remove']('show');
-    buttonTop.previousSibling.classList[scrollCheck ? 'add' : 'remove'](
-      'margin-bottom'
-    );
+    speedDialBox.classList[scrollCheck ? 'add' : 'remove']('margin-bottom');
   };
 
   handleEvent = () => {
