@@ -119,6 +119,9 @@ new SpeedDial({
   steps: 50,
   // show button 'scroll-top' at 100px - not required
   position: 100,
+  // the option to enable the layer that covers the
+  // page but is located under the speed-dial buttons
+  modal: true,
   data: {
     // bottom-right, bottom-left, top-right, top-left
     position: 'bottom-right',
@@ -133,6 +136,7 @@ props | type | require | default | description
 icons | object | ✔ |  | Icons object. Show the tooltip on the hover event
 steps | number |  | `50` | Show icons with a delay animation
 position | number |  | null  | Show button 'scroll-top-top' at 100px
+modal | boolean |   |   | This option allows you to turn on the layer that is generated and inserted after the div with the speed-dial class. It appears when you hover over the large button. Color control and fade in and fade out possible in css
 data/position | string | ✔ |  | Sets the main button for us in one of the four corners [bottom-right, bottom-left, top-right, top-left]
 data/direction | string | ✔ |  | In which direction are the small icons to be displayed [top, bottom, left, right]
 
