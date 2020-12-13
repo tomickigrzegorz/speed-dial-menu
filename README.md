@@ -61,7 +61,7 @@ const speedIcons = {
           d: 'M0 3h20v2h-20v-2zM0 ...' 
         }
       ],
-      color: '#1976d2'
+      color: '#1976d2' // not required
     },
     iconTop: {
       name: 'top',
@@ -72,7 +72,7 @@ const speedIcons = {
           d: 'M7.406 15.422L6 ...'
         }
       ],
-      color: 'red'
+      color: 'red' // not required
     },
     iconsSmall: [
       {
