@@ -64,7 +64,7 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     ~.speed-dial-modal {
       visibility: visible;
       opacity: 1;
-      background: rgba(255, 0, 0, 0.5);
+      background: rgba(209, 209, 209, 0.5);
 
       &:before {
         content: 'modal ⚡';
@@ -152,12 +152,12 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     transition: all 100ms ease-in-out;
     width: 25px;
     height: 25px;
-    fill: var(--gray);
+    // fill: var(--gray);
 
     &__plus {
       width: 24px;
       height: 24px;
-      fill: var(--white);
+      // fill: var(--white);
     }
   }
 
@@ -170,15 +170,19 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
   }
 
   .button--small {
-    box-shadow: $box-shadow;
+    // box-shadow: $box-shadow;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background-color: var(--white);
-    transition: all 500ms;
+    // border-radius: 50%;
+    // background-color: var(--white);
+    // transition: opacity 500ms esall 500ms;
 
     &:hover {
-      background-color: var(--gray-light);
+
+      // background-color: var(--gray-light);
+      >div {
+        opacity: 0.5;
+      }
 
       span {
         display: block;
@@ -201,12 +205,17 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
   .button-root {
     width: 56px;
     height: 56px;
-    border-radius: 50%;
-    box-shadow: $box-shadow;
+    background: transparent;
+    // border-radius: 50%;
+    // box-shadow: $box-shadow;
     transition: opacity 200ms ease-in-out;
 
     &:hover {
-      filter: contrast(200%);
+      >svg {
+        opacity: 0.5;
+      }
+
+      // filter: brightness(120%);
     }
   }
 
@@ -221,7 +230,7 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
   height: 56px;
   opacity: 0;
   bottom: 10px;
-  transition: opacity .3s linear;
+  transition: opacity 300ms linear;
 
   &.show {
     opacity: 1;
@@ -231,7 +240,6 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     position: absolute;
     width: 24px;
     height: 24px;
-    fill: #fff;
     left: 0;
     right: 0;
     top: 0;
@@ -241,16 +249,17 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
 
   .top-container {
     position: relative;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    opacity: .4;
-    transition: opacity .4s ease;
+    // opacity: .4;
+    transition: filter 400ms ease-in-out;
     margin: auto;
     cursor: pointer;
 
     &:hover {
-      opacity: 1;
+      // opacity: 0.5;
+      filter: drop-shadow(0 0 0.8rem red);
     }
   }
 }

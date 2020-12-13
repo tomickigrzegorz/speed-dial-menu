@@ -22,7 +22,7 @@ class SpeedDial {
       })
     );
 
-    this.iconBig(option.icons.iconPlus);
+    this.iconBig(option.icons.iconBig);
     this.iconSmall(option.icons.iconsSmall);
 
     if (
