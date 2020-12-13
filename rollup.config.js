@@ -6,15 +6,8 @@ import pkg from "./package.json";
 
 const { PRODUCTION } = process.env;
 
-export default {
-  input: 'sources/index.js',
-  output: {
-    file: pkg.main,
-    format: 'iife',
-    name: 'SpeedDial',
-    sourcemap: !PRODUCTION
-  },
-  plugins: [
+const plugins = () => {
+  return [
     babel({
       exclude: 'node_modules/**',
       babelHelpers: 'bundled'
@@ -24,3 +17,25 @@ export default {
     !PRODUCTION && livereload()
   ]
 };
+
+export default [
+  {
+    input: 'sources/index.js',
+    output: {
+      file: pkg.main,
+      format: 'iife',
+      name: 'SpeedDial'
+    },
+    plugins: plugins()
+  },
+  {
+    input: 'sources/index.js',
+    watch: false,
+    output: {
+      file: pkg.browser,
+      format: 'umd',
+      name: 'SpeedDial'
+    },
+    plugins: plugins()
+  }
+];
