@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "node-sass style.scss style.css --watch",
-    "prod": "node-sass style.scss style.css",
+    "prod": "node-sass style.scss style.css --output-style compressed",
     "postcss": "postcss style.css -o style.css",
     "build": "concurrently \"yarn prod\" \"yarn postcss\""
   },
