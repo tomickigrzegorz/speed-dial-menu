@@ -6,15 +6,15 @@
   --blue-darken: #0051a1;
 }
 
-$box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
-  0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+$box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 
 %hover-button-root {
-  background-color: var(--blue-darken);
-
-  svg {
-    transform: rotate(45deg);
-  }
+  opacity: 0.5;
+  // svg {
+  //   transform: rotate(45deg);
+  // }
 }
 
 * {
@@ -112,7 +112,7 @@ body {
 
   &__item {
     position: relative;
-    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, opacity 0.8s;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, opacity 0.5s;
     opacity: 0;
     transform: scale(0);
   }
@@ -138,7 +138,7 @@ body {
 
     #{$self}__item {
       opacity: 1;
-      transform: scale(1);
+      transform: scale(1) translateZ(0);
     }
 
     #{$self}__button--root {
@@ -147,15 +147,13 @@ body {
   }
 
   &__button--small {
-    box-shadow: $box-shadow;
+    background: none;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background-color: var(--white);
     transition: all 500ms;
 
     &:hover {
-      background-color: var(--gray-light);
+      // background-color: var(--gray-light);
 
       span {
         display: block;
@@ -176,9 +174,7 @@ body {
   &__button--root {
     width: 56px;
     height: 56px;
-    border-radius: 50%;
-    background-color: var(--blue);
-    box-shadow: $box-shadow;
+    background: none;
 
     &:hover {
       @extend %hover-button-root;
