@@ -61,7 +61,8 @@ const speedIcons = {
           d: 'M0 3h20v2h-20v-2zM0 ...' 
         }
       ],
-      color: '#1976d2' // not required
+      color: '#1976d2', // not required
+      ariaLabel: 'show social buttons' // not required
     },
     iconTop: {
       name: 'top',
@@ -72,7 +73,8 @@ const speedIcons = {
           d: 'M7.406 15.422L6 ...'
         }
       ],
-      color: 'red' // not required
+      color: 'red', // not required
+      ariaLabel: 'scroll to top' // not required
     },
     iconsSmall: [
       {
@@ -81,18 +83,28 @@ const speedIcons = {
         viebox: '0 0 32 32',
         url: 'https://url.com',
         target: '_blank',
+        className: 'lightning', // not required
+        ariaLabel: 'open lightning', // not required
         path: [
-          { d: 'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...' },
-          { d: 'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...' },
+          { 
+            fill: 'black',
+            d: 'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...' 
+          },
+          { 
+            d: 'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...'
+          },
         ]
       },
       {
         id: 2,
         name: 'wind',
         viebox: '0 0 32 32',
-        className: 'wind',
+        className: 'wind', // not required
+        ariaLabel: 'open wind ;)', // not required
         path: [
-          { d : 'M26.938 12c-1.656 0-3 1.344-3 3 0...' }
+          { 
+            d : 'M26.938 12c-1.656 0-3 1.344-3 3 0...'
+          }
         ]
       }
     ]
@@ -107,7 +119,8 @@ viebox | string | Viewbox for svg
 url | string | The Url specifies the link's destination, not required
 target | string | _blank/_self/_parent/_top, not required
 className | string | An additional class after which we can make events, not required
-path | array object | Path svg, can be an array of several paths
+ariaLabel | string | An aria-label is added to button elements
+path | array object | Path svg, can be an array of several paths, each track can also have a different color, just add fill: '#fff'
 color | string | Color will be used for the main button or top button
 
 ## Sample configuration
