@@ -18,19 +18,19 @@ const template = `
 <h3>CHANGE DISPLAY POSITION</h3>
 <label class="radio">
   <input type="radio" name="type" value="1" checked>
-  <span>bottom-right</span>
+  <span>bottom-right + top</span>
 </label>
 <label class="radio">
   <input type="radio" name="type" value="2">
-  <span>bottom-left</span>
+  <span>bottom-left + right</span>
 </label>
 <label class="radio">
   <input type="radio" name="type" value="3">
-  <span>top-right</span>
+  <span>top-right + bottom</span>
 </label>
 <label class="radio">
   <input type="radio" name="type" value="4">
-  <span>top-left</span>
+  <span>top-left + bottom</span>
 </label>
 `;
 
@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', () => {
           break;
         case '2':
           newPosition = 'bottom-left';
-          newDairection = 'top';
+          newDairection = 'right';
           break;
         case '3':
           newPosition = 'top-right';
