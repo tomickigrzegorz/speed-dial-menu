@@ -37,7 +37,7 @@ class SpeedDial {
     }
   }
 
-  element = ({ type, data, el, style, viebox, url, target, path }) => {
+  element = ({ type, data, el, style, viebox, url, target, path, ariaLabel }) => {
     const element =
       type === 'svg'
         ? document.createElementNS('http://www.w3.org/2000/svg', type)
@@ -59,6 +59,9 @@ class SpeedDial {
     }
     if (target) {
       element.target = target;
+    }
+    if (ariaLabel) {
+      element.setAttribute('aria-label', ariaLabel);
     }
     if (viebox) {
       element.setAttributeNS(null, 'viewBox', viebox);
@@ -88,6 +91,7 @@ class SpeedDial {
         el: 'button-root',
         type: 'button',
         style: `background-color: ${actionButton.color}`,
+        ariaLabel: actionButton.ariaLabel,
       })
     );
 
@@ -117,8 +121,9 @@ class SpeedDial {
       'afterend',
       this.element({
         el: this.options.topBtn,
-        type: 'div',
+        type: 'button',
         data: ['position', this.options.data.position],
+        ariaLabel: options.ariaLabel,
       })
     );
 
@@ -174,7 +179,8 @@ class SpeedDial {
       const extendClass = className || '';
       const speedDialItem = this.element({
         el: `item ${extendClass}`,
-        type: 'div',
+        type: 'button',
+        ariaLabel: icons[i].ariaLabel,
         style: `transition-delay: ${stepTrans}ms;`,
       });
 
