@@ -57,7 +57,7 @@ const speedIcons = {
       viebox: '0 0 20 20',
       path: [
         { 
-          fill: 'red',
+          fill: 'red', // not required
           d: 'M0 3h20v2h-20v-2zM0 ...' 
         }
       ],
@@ -69,7 +69,7 @@ const speedIcons = {
       viebox: '0 0 24 24',
       path: [
         {
-          fill: 'red',
+          fill: 'red', // not required
           d: 'M7.406 15.422L6 ...'
         }
       ],
@@ -87,7 +87,7 @@ const speedIcons = {
         ariaLabel: 'open lightning', // not required
         path: [
           { 
-            fill: 'black',
+            fill: 'black', // not required
             d: 'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...' 
           },
           { 
