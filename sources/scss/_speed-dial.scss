@@ -30,6 +30,10 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     cursor: pointer;
     outline: none;
     border: 0;
+    width: 56px;
+    height: 56px;
+    background: transparent;
+    // border-radius: 50%;
   }
 
   &-modal {
@@ -43,6 +47,10 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     visibility: hidden;
     opacity: 0;
     transition: all 300ms ease-in-out;
+  }
+
+  .item {
+    margin-bottom: 15px;
   }
 
   &:hover {
@@ -67,15 +75,16 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
       background: rgba(209, 209, 209, 0.5);
 
       &:before {
-        content: 'modal ⚡';
+        position: fixed;
+        display: flex;
         justify-content: center;
+        align-items: center;
+        content: 'modal ⚡';
         font-size: 3rem;
         font-weight: 700;
         text-transform: uppercase;
-        display: flex;
         width: 100%;
-        height: 20%;
-        align-items: center;
+        height: 100%;
       }
     }
   }
@@ -93,7 +102,7 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
 
     .button--small {
       @extend %flex-center;
-      margin-bottom: 15px;
+      // margin-bottom: 15px;
 
       >div {
         @extend %small-option;
@@ -152,12 +161,10 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     transition: all 100ms ease-in-out;
     width: 25px;
     height: 25px;
-    // fill: var(--gray);
 
     &__plus {
       width: 24px;
       height: 24px;
-      // fill: var(--white);
     }
   }
 
@@ -170,16 +177,10 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
   }
 
   .button--small {
-    // box-shadow: $box-shadow;
     width: 40px;
     height: 40px;
-    // border-radius: 50%;
-    // background-color: var(--white);
-    // transition: opacity 500ms esall 500ms;
 
     &:hover {
-
-      // background-color: var(--gray-light);
       >div {
         opacity: 0.5;
       }
@@ -206,16 +207,12 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     width: 56px;
     height: 56px;
     background: transparent;
-    // border-radius: 50%;
-    // box-shadow: $box-shadow;
     transition: opacity 200ms ease-in-out;
 
     &:hover {
       >svg {
         opacity: 0.5;
       }
-
-      // filter: brightness(120%);
     }
   }
 
@@ -230,6 +227,10 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
   height: 56px;
   opacity: 0;
   bottom: 10px;
+  z-index: 9;
+  background: transparent;
+  border: none;
+  outline: none;
   transition: opacity 300ms linear;
 
   &.show {
@@ -252,13 +253,11 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    // opacity: .4;
     transition: filter 400ms ease-in-out;
     margin: auto;
     cursor: pointer;
 
     &:hover {
-      // opacity: 0.5;
       filter: drop-shadow(0 0 0.8rem red);
     }
   }

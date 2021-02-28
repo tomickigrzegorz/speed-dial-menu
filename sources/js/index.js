@@ -1,15 +1,8 @@
+import defaultOptions from './util/defaults';
+
 class SpeedDial {
   constructor(options) {
-    const defaultOption = {
-      sPos: 60,
-      steps: 50,
-      stepTrans: 100,
-      modal: false,
-      position: null,
-      topBtn: 'speed-dial__top',
-    };
-
-    const option = { ...defaultOption, ...options };
+    const option = { ...defaultOptions, ...options };
 
     this.options = option;
 
@@ -37,7 +30,7 @@ class SpeedDial {
     }
   }
 
-  element = ({ type, data, el, style, viebox, url, target, path }) => {
+  element = ({ type, data, el, style, viebox, url, target, path, ariaLabel }) => {
     const element =
       type === 'svg'
         ? document.createElementNS('http://www.w3.org/2000/svg', type)
@@ -59,6 +52,9 @@ class SpeedDial {
     }
     if (target) {
       element.target = target;
+    }
+    if (ariaLabel) {
+      element.setAttribute('aria-label', ariaLabel);
     }
     if (viebox) {
       element.setAttributeNS(null, 'viewBox', viebox);
@@ -88,6 +84,7 @@ class SpeedDial {
         el: 'button-root',
         type: 'button',
         style: `background-color: ${actionButton.color}`,
+        ariaLabel: actionButton.ariaLabel,
       })
     );
 
@@ -117,8 +114,9 @@ class SpeedDial {
       'afterend',
       this.element({
         el: this.options.topBtn,
-        type: 'div',
+        type: 'button',
         data: ['position', this.options.data.position],
+        ariaLabel: options.ariaLabel,
       })
     );
 
@@ -174,22 +172,12 @@ class SpeedDial {
       const extendClass = className || '';
       const speedDialItem = this.element({
         el: `item ${extendClass}`,
-        type: 'div',
+        type: 'button',
+        ariaLabel: icons[i].ariaLabel,
         style: `transition-delay: ${stepTrans}ms;`,
       });
 
-      let options = {};
-      if (url) {
-        options = {
-          type: 'a',
-          url,
-          target,
-        };
-      } else {
-        options = {
-          type: 'div',
-        };
-      }
+      let options = url ? { type: 'a', url, target } : { type: 'div' };
 
       const speedDialItemButton = this.element({
         el: 'button--small',
@@ -251,7 +239,7 @@ class SpeedDial {
 
   handleEvent = () => {
     window.addEventListener('scroll', this.showScrollButton);
-    window.addEventListener('load', this.showScrollButton);
+    // window.addEventListener('load', this.showScrollButton);
 
     const buttonTop = this.select(this.options.topBtn);
     buttonTop.addEventListener('click', (event) => {
