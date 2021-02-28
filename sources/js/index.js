@@ -78,8 +78,8 @@ class SpeedDial {
   select = (el) => document.querySelector(`.${el}`);
 
   iconBig = (actionButton) => {
-    const speedDialBox = this.select('speed-dial');
-    speedDialBox.appendChild(
+    this.speedDialBox = this.select('speed-dial');
+    this.speedDialBox.appendChild(
       this.element({
         el: 'button-root',
         type: 'button',
@@ -88,7 +88,7 @@ class SpeedDial {
       })
     );
 
-    speedDialBox.insertAdjacentElement(
+    this.speedDialBox.insertAdjacentElement(
       'beforeend',
       this.element({
         el: 'action',
@@ -97,8 +97,8 @@ class SpeedDial {
       })
     );
 
-    const speedDialRoot = this.select('button-root');
-    speedDialRoot.appendChild(
+    this.speedDialRoot = this.select('button-root');
+    this.speedDialRoot.appendChild(
       this.element({
         el: 'icon icon__plus',
         type: 'svg',
@@ -239,7 +239,7 @@ class SpeedDial {
 
   handleEvent = () => {
     window.addEventListener('scroll', this.showScrollButton);
-    // window.addEventListener('load', this.showScrollButton);
+    window.addEventListener('load', this.showScrollButton);
 
     const buttonTop = this.select(this.options.topBtn);
     buttonTop.addEventListener('click', (event) => {
@@ -249,6 +249,13 @@ class SpeedDial {
         behavior: 'smooth',
       });
     });
+
+    if (this.options.visibility) {
+      this.speedDialBox.classList.add('speed-dial-active');
+      this.speedDialRoot.addEventListener('click', () => {
+        this.speedDialBox.classList.toggle('speed-dial-active');
+      });
+    }
   };
 }
 

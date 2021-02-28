@@ -50,7 +50,7 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
   }
 
   .item {
-    margin-bottom: 15px;
+    // margin-bottom: 15px;
   }
 
   &:hover {
@@ -163,8 +163,8 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     height: 25px;
 
     &__plus {
-      width: 24px;
-      height: 24px;
+      width: 35px;
+      height: 35px;
     }
   }
 
@@ -204,12 +204,18 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
   }
 
   .button-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 56px;
     height: 56px;
     background: transparent;
-    transition: opacity 200ms ease-in-out;
+    border-radius: 50%;
+    transition: all 100ms ease-in-out;
 
     &:hover {
+      transform: rotate(45deg);
+
       >svg {
         opacity: 0.5;
       }
@@ -218,6 +224,21 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
 
   &.margin-bottom {
     bottom: 76px;
+  }
+}
+
+.speed-dial-active {
+  [data-direction] {
+    visibility: visible;
+
+    .item {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .button-root {
+    transform: rotate(45deg);
   }
 }
 
@@ -250,15 +271,15 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
 
   .top-container {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     transition: filter 400ms ease-in-out;
     margin: auto;
     cursor: pointer;
 
     &:hover {
-      filter: drop-shadow(0 0 0.8rem red);
+      opacity: 0.5;
     }
   }
 }
