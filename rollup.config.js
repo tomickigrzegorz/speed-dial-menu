@@ -20,7 +20,7 @@ const plugins = () => {
 
 export default [
   {
-    input: 'sources/index.js',
+    input: 'sources/js/index.js',
     output: {
       file: pkg.main,
       format: 'iife',
@@ -29,7 +29,7 @@ export default [
     plugins: plugins()
   },
   {
-    input: 'sources/index.js',
+    input: 'sources/js/index.js',
     watch: false,
     output: {
       file: pkg.browser,

@@ -1,15 +1,8 @@
+import defaultOptions from './util/defaults';
+
 class SpeedDial {
   constructor(options) {
-    const defaultOption = {
-      sPos: 60,
-      steps: 50,
-      stepTrans: 100,
-      modal: false,
-      position: null,
-      topBtn: 'speed-dial__top',
-    };
-
-    const option = { ...defaultOption, ...options };
+    const option = { ...defaultOptions, ...options };
 
     this.options = option;
 
@@ -184,18 +177,7 @@ class SpeedDial {
         style: `transition-delay: ${stepTrans}ms;`,
       });
 
-      let options = {};
-      if (url) {
-        options = {
-          type: 'a',
-          url,
-          target,
-        };
-      } else {
-        options = {
-          type: 'div',
-        };
-      }
+      let options = url ? { type: 'a', url, target } : { type: 'div' };
 
       const speedDialItemButton = this.element({
         el: 'button--small',
@@ -257,7 +239,7 @@ class SpeedDial {
 
   handleEvent = () => {
     window.addEventListener('scroll', this.showScrollButton);
-    window.addEventListener('load', this.showScrollButton);
+    // window.addEventListener('load', this.showScrollButton);
 
     const buttonTop = this.select(this.options.topBtn);
     buttonTop.addEventListener('click', (event) => {
