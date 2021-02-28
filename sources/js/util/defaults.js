@@ -4,6 +4,7 @@ export default {
   stepTrans: 100,
   modal: false,
   position: null,
+  visibility: false,
   data: {
     position: 'bottom-right',
     direction: 'top',

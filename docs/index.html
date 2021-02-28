@@ -18,8 +18,8 @@
           name: 'menu',
           viebox: '0 0 32 32',
           path: [{
-            fill: '#000', // not required
-            d: 'M27 22a4.985 4.985 0 00-3.594 1.526L9.937 16.792a5.035 5.035 0 000-1.582l13.469-6.734a5 5 0 10-1.343-2.683L8.594 12.527A5 5 0 105 21.001a4.985 4.985 0 003.594-1.526l13.469 6.734A5 5 0 1027 22z',
+            fill: '#cacaca', // not required
+            d: 'M16 0c-8.836 0-16 7.164-16 16s7.164 16 16 16 16-7.164 16-16-7.164-16-16-16zM24 18h-6v6h-4v-6h-6v-4h6v-6h4v6h6v4z',
           }],
           // color: 'red', // not required
           ariaLabel: 'show social buttons' // not required
@@ -28,10 +28,10 @@
           name: 'top',
           viebox: '0 0 24 24',
           path: [{
-            fill: '#000', // not required
+            fill: '#fff', // not required
             d: 'M7.406 15.422L6 14.016l6-6 6 6-1.406 1.406L12 10.828z'
           }],
-          color: '#fff', // not required
+          color: '#cacaca', // not required
           ariaLabel: 'scroll to top' // not required
         },
         iconsSmall: [
@@ -91,6 +91,9 @@
           // show modal layer when hover on big button menu control
           // the appearance of this layer in css #speed-dial-modal
           modal: true,
+          // small icons visible after clicking on the main
+          // button it doesn't hide on mouse out
+          visibility: true,
           // select the page corner you want is not required
           data: {
             // bottom-right, bottom-left, top-right, top-left
