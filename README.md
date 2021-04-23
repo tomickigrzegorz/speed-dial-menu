@@ -47,81 +47,65 @@ yarn prod
 // or
 npm run prod
 ```
-
+## Add a group of svg items
+> the best place is right after opening the `<body>`
+```svg
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="menu" viewBox="0 0 32 32">
+    <path d="M16 0c-8.836 0-16 7.164-16 ..."></path>
+  </symbol>
+  <symbol id="top" viewBox="0 0 24 24">
+    <path d="M7.406 15.422L6 14.016l6-6 ..."></path>
+  </symbol>
+  <symbol id="lightning" viewBox="0 0 32 32">
+    <path d="M29 0H3C1.35 0 0 1.35 0311 ..."></path>
+  </symbol>
+  <symbol id="wind" viewBox="0 0 32 32">
+    <path d="M32 7.075a12.941 12.941 20 ..."></path>
+  </symbol>
+</svg>
+```
 ## Configuration json
-
 ```js
 const speedIcons = {
     iconPlus: {
-      name: 'plus',
-      viebox: '0 0 20 20',
-      path: [
-        { 
-          fill: 'red', // not required
-          d: 'M0 3h20v2h-20v-2zM0 ...' 
-        }
-      ],
+      symbol: 'menu',
       color: '#1976d2', // not required
       ariaLabel: 'show social buttons' // not required
     },
     iconTop: {
-      name: 'top',
-      viebox: '0 0 24 24',
-      path: [
-        {
-          fill: 'red', // not required
-          d: 'M7.406 15.422L6 ...'
-        }
-      ],
+      symbol: 'top',
       color: 'red', // not required
       ariaLabel: 'scroll to top' // not required
     },
     iconsSmall: [
       {
         id: 1,
-        name: 'lightning',
-        viebox: '0 0 32 32',
-        url: 'https://url.com',
-        target: '_blank',
+        symbol: 'lightning',
+        url: 'https://url.com', // not required
+        target: '_blank', // not required
         className: 'lightning', // not required
         ariaLabel: 'open lightning', // not required
-        path: [
-          { 
-            fill: 'black', // not required
-            d: 'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...' 
-          },
-          { 
-            d: 'M12 24l2 2-2 6 6-6-2-2 2-4-6 4zM32...'
-          },
-        ]
       },
       {
         id: 2,
-        name: 'wind',
-        viebox: '0 0 32 32',
+        symbol: 'wind',
         className: 'wind', // not required
         ariaLabel: 'open wind ;)', // not required
-        path: [
-          { 
-            d : 'M26.938 12c-1.656 0-3 1.344-3 3 0...'
-          }
-        ]
       }
     ]
   }
 ```
 
-key | value | description
----- | ------- | -----------
-id | number | This element is used to show the order of items with icons
-name | string | The name that is used to show the tooltip on the hover event
-viebox | string | Viewbox for svg
-url | string | The Url specifies the link's destination, not required
-target | string | _blank/_self/_parent/_top, not required
-className | string | An additional class after which we can make events, not required
-ariaLabel | string | An aria-label is added to button elements
-path | array object | Path svg, can be an array of several paths, each track can also have a different color, just add fill: '#fff'
-color | string | Color will be used for the main button or top button
+key | type | require | description
+---- | ------- | ----- | -----------
+id | number | ✔ | This element is used to show the order of items with icons
+symbol | string | ✔ | Symbol id name from svg
+url | string | | The Url specifies the link's destination, not required
+target | string | | _blank/_self/_parent/_top, not required
+className | string | | An additional class after which we can make events, not required
+ariaLabel | string | | An aria-label is added to button elements
+color | string | | Color will be used for the main button or top button
 
 ## Sample configuration
 
