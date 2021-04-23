@@ -1,23 +1,14 @@
-$data-position: (
-  bottom-right: (
-    bottom,
-    right
-  ),
-  bottom-left: (
-    bottom,
-    left
-  ),
-  top-left: (
-    top,
-    left
-  ),
-  top-right: (
-    top,
-    right
-  )
-);
+$data-position: (bottom-right: (bottom,
+    right),
+  bottom-left: (bottom,
+    left),
+  top-left: (top,
+    left),
+  top-right: (top,
+    right));
 
-@each $name, $value in $data-position {
+@each $name,
+$value in $data-position {
   $place1: nth($value, 1);
   $place2: nth($value, 2);
 

@@ -24,9 +24,10 @@ export default [
     output: {
       file: pkg.main,
       format: 'iife',
-      name: 'SpeedDial'
+      name: 'SpeedDial',
+      sourcemap: !PRODUCTION
     },
-    plugins: plugins()
+    plugins: plugins(),
   },
   {
     input: 'sources/js/index.js',

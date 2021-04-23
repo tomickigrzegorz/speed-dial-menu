@@ -9,5 +9,6 @@ export default {
     position: 'bottom-right',
     direction: 'top',
   },
-  topBtn: 'speed-dial__top',
+  bgColor: '#cacaca',
+  topBtn: '.speed-dial__top',
 };

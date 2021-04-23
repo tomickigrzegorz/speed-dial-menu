@@ -1,12 +1,17 @@
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
 :root {
   --white: #fff;
   --gray: #464646;
   --gray-light: #ddd;
 }
 
-$box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
-0px 6px 10px 0px rgba(0, 0, 0, 0.14),
-0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+$box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+  0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 
 %flex-center {
   display: flex;
@@ -20,11 +25,15 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
   background-repeat: no-repeat;
 }
 
+svg:not(:root) {
+  overflow: hidden;
+}
+
 .speed-dial {
   $self: &;
   position: fixed;
   z-index: 999;
-  transition: bottom .4s ease;
+  transition: bottom 0.4s ease;
 
   button {
     cursor: pointer;
@@ -36,7 +45,7 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     // border-radius: 50%;
   }
 
-  &-modal {
+  &__modal {
     display: flex;
     position: absolute;
     top: 0;
@@ -47,10 +56,6 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     visibility: hidden;
     opacity: 0;
     transition: all 300ms ease-in-out;
-  }
-
-  .item {
-    // margin-bottom: 15px;
   }
 
   &:hover {
@@ -64,12 +69,11 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
       transform: scale(1);
     }
 
-    .button--root {
+    .speed-dial__button--root {
       @extend %flex-center;
     }
 
-
-    ~.speed-dial-modal {
+    ~ .speed-dial__modal {
       visibility: visible;
       opacity: 1;
       background: rgba(209, 209, 209, 0.5);
@@ -79,7 +83,7 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
         display: flex;
         justify-content: center;
         align-items: center;
-        content: 'modal ⚡';
+        content: "modal ⚡";
         font-size: 3rem;
         font-weight: 700;
         text-transform: uppercase;
@@ -100,11 +104,11 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     width: 56px;
     flex-direction: column;
 
-    .button--small {
+    .speed-dial__button--small {
       @extend %flex-center;
       // margin-bottom: 15px;
 
-      >div {
+      > div {
         @extend %small-option;
       }
     }
@@ -115,11 +119,11 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     width: 56px;
     flex-direction: column-reverse;
 
-    .button--small {
+    .speed-dial__button--small {
       @extend %flex-center;
       margin-top: 15px;
 
-      >div {
+      > div {
         @extend %small-option;
       }
     }
@@ -131,11 +135,11 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     height: 56px;
     flex-direction: row;
 
-    .button--small {
+    .speed-dial__button--small {
       @extend %flex-center;
       margin-right: 15px;
 
-      >div {
+      > div {
         @extend %small-option;
       }
     }
@@ -147,11 +151,11 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     height: 56px;
     flex-direction: row-reverse;
 
-    .button--small {
+    .speed-dial__button--small {
       @extend %flex-center;
       margin-left: 15px;
 
-      >div {
+      > div {
         @extend %small-option;
       }
     }
@@ -176,12 +180,12 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     transform: scale(0);
   }
 
-  .button--small {
+  .speed-dial__button--small {
     width: 40px;
     height: 40px;
 
     &:hover {
-      >div {
+      > div {
         opacity: 0.5;
       }
 
@@ -203,7 +207,7 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     font-family: Arial, Helvetica, sans-serif;
   }
 
-  .button-root {
+  .speed-dial__button--root {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -216,7 +220,7 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     &:hover {
       transform: rotate(45deg);
 
-      >svg {
+      > svg {
         opacity: 0.5;
       }
     }
@@ -252,24 +256,30 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
   background: transparent;
   border: none;
   outline: none;
-  transition: opacity 300ms linear;
 
   &.show {
     opacity: 1;
   }
 
   .icon__top {
-    position: absolute;
+    display: flex;
     width: 24px;
     height: 24px;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    fill: #fff;
+    justify-content: center;
+    align-items: center;
     margin: auto;
+
+    svg {
+      position: absolute;
+      box-sizing: border-box;
+      width: 24px;
+      height: 24px;
+    }
   }
 
   .top-container {
+    display: flex;
     position: relative;
     width: 35px;
     height: 35px;
@@ -277,9 +287,17 @@ $box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     transition: filter 400ms ease-in-out;
     margin: auto;
     cursor: pointer;
+    align-items: center;
 
     &:hover {
       opacity: 0.5;
     }
+  }
+}
+
+.speed-dial,
+.speed-dial__top {
+  svg {
+    pointer-events: none;
   }
 }
