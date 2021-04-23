@@ -2,209 +2,150 @@ import defaultOptions from './util/defaults';
 
 class SpeedDial {
   constructor(options) {
-    const option = { ...defaultOptions, ...options };
+    this.options = { ...defaultOptions, ...options };
 
-    this.options = option;
+    this.active = 'speed-dial-active';
+    this.root = 'speed-dial__button--root';
+    this.top = 'top-container';
 
-    document.body.insertAdjacentElement(
-      'beforeend',
-      this.element({
-        el: `speed-dial`,
-        type: 'div',
-        data: ['position', option.data.position],
-      })
-    );
+    this.speedDial = document.createElement('div');
+    this.speedDial.setAttribute('data-position', this.options.data.position);
+    this.speedDial.className = 'speed-dial';
 
-    this.iconBig(option.icons.iconBig);
-    this.iconSmall(option.icons.iconsSmall);
+    document.body.insertAdjacentElement('beforeend', this.speedDial);
 
-    if (
-      option.data.position === 'bottom-left' ||
-      option.data.position === 'bottom-right'
-    ) {
-      this.topButtons(option.icons.iconTop);
+    if (this.options.position) {
+      window.addEventListener('scroll', this.showScrollButton);
+      window.addEventListener('load', this.showScrollButton);
+      document.addEventListener('click', this.handleEvent, false);
     }
 
-    if (option.modal) {
+    this.initial();
+  }
+
+  initial = () => {
+    this.speedDial.appendChild(this.buttonBig());
+    this.speedDial.appendChild(this.buttonsSmall());
+    this.speedDial.insertAdjacentElement('afterend', this.buttonTop());
+
+    if (this.options.modal) {
       this.modal();
+    }
+
+    if (this.options.visibility) {
+      this.speedDial.classList.add(this.active);
+
+      this.speedDial.addEventListener('click', (event) => {
+        console.log(event.target.className);
+        if (event.target.className !== this.root) return;
+        this.speedDial.classList.toggle(this.active);
+      });
     }
   }
 
-  element = ({ type, data, el, style, viebox, url, target, path, ariaLabel }) => {
-    const element =
-      type === 'svg'
-        ? document.createElementNS('http://www.w3.org/2000/svg', type)
-        : document.createElement(type);
+  svgUse = (classname, symbol) => {
+    return `<svg class="icon ${classname}"><use xlink:href="#${symbol}"></use></svg>`;
+  }
 
-    if (data) {
-      const [_data, _value] = data;
-      element.setAttribute(`data-${_data}`, _value);
-    }
-    if (el) {
-      element.setAttribute('class', el);
-    }
-    if (style) {
-      element.style = style;
-    }
-    if (url) {
-      element.href = url;
-      element.rel = 'noopener';
-    }
-    if (target) {
-      element.target = target;
-    }
-    if (ariaLabel) {
-      element.setAttribute('aria-label', ariaLabel);
-    }
-    if (viebox) {
-      element.setAttributeNS(null, 'viewBox', viebox);
-    }
-    if (path) {
-      for (let i = 0; i < path.length; i++) {
-        const newpath = document.createElementNS(
-          'http://www.w3.org/2000/svg',
-          'path'
-        );
-        const pathType = Array.isArray(path[i]) ? path[i][i] : path[i];
-        Object.keys(pathType).map((key) => {
-          newpath.setAttributeNS(null, key, pathType[key]);
-        });
-        element.appendChild(newpath);
+  buttonBig = () => {
+    const { icons, bgColor } = this.options;
+    const button = document.createElement('button');
+    button.className = this.root;
+    button.style.fill = icons.iconBig.color || bgColor;
+    button.setAttribute('aria-label', icons.iconBig.ariaLabel || 'show social buttons');
+
+    const svgBig = this.svgUse('icon__plus', icons.iconBig.symbol);
+    button.insertAdjacentHTML('beforeend', svgBig);
+
+    return button;
+  }
+
+
+  buttonsSmall = () => {
+    const { data, icons, steps } = this.options;
+
+    const container = document.createElement('div');
+    container.className = 'action';
+    container.setAttribute('data-direction', data.direction);
+
+    const elements = icons.iconsSmall;
+    const sortIcon = elements.sort((a, b) => a.id - b.id);
+    let stepTrans = steps * sortIcon.length + 50;
+
+    elements.map(element => {
+      console.log(element);
+      const { symbol, className, ariaLabel, target, url } = element;
+      const small = document.createElement('button');
+      small.classList.add('item', symbol);
+      if (ariaLabel) {
+        small.setAttribute('aria-label', ariaLabel);
       }
-    }
-    return element;
-  };
+      small.setAttribute('style', `transition-delay: ${stepTrans}ms`);
 
-  select = (el) => document.querySelector(`.${el}`);
+      let link;
+      if (url) {
+        link = document.createElement('a');
+      } else {
+        link = document.createElement('div');
+      }
 
-  iconBig = (actionButton) => {
-    this.speedDialBox = this.select('speed-dial');
-    this.speedDialBox.appendChild(
-      this.element({
-        el: 'button-root',
-        type: 'button',
-        style: `background-color: ${actionButton.color}`,
-        ariaLabel: actionButton.ariaLabel,
-      })
-    );
+      link.className = 'speed-dial__button--small';
+      if (className) {
+        link.classList.add(className);
+      }
 
-    this.speedDialBox.insertAdjacentElement(
-      'beforeend',
-      this.element({
-        el: 'action',
-        type: 'div',
-        data: ['direction', this.options.data.direction],
-      })
-    );
+      if (url) {
+        link.href = url;
+        link.rel = 'noopener';
+      }
+      if (target) {
+        link.target = target;
+      }
 
-    this.speedDialRoot = this.select('button-root');
-    this.speedDialRoot.appendChild(
-      this.element({
-        el: 'icon icon__plus',
-        type: 'svg',
-        viebox: actionButton.viebox,
-        path: actionButton.path,
-      })
-    );
-  };
+      container.appendChild(small);
 
-  topButtons = (options) => {
-    const speedDialBox = this.select('speed-dial');
-    speedDialBox.insertAdjacentElement(
-      'afterend',
-      this.element({
-        el: this.options.topBtn,
-        type: 'button',
-        data: ['position', this.options.data.position],
-        ariaLabel: options.ariaLabel,
-      })
-    );
+      const smallIcon = this.svgUse('icon__small', symbol);
+      link.insertAdjacentHTML('beforeend', smallIcon);
 
-    const buttonTop = this.select(this.options.topBtn);
-    buttonTop.insertAdjacentElement(
-      'beforeend',
-      this.element({
-        el: 'top-container',
-        type: 'div',
-        style: `background-color:${options.color};`,
-      })
-    );
+      const span = document.createElement('span');
+      span.textContent = element.symbol;
+      span.setAttribute('style', this.tipPosition(data.position, data.direction));
 
-    const buttonTopContainer = this.select('top-container');
-    buttonTopContainer.appendChild(
-      this.element({
-        el: 'icon__top',
-        type: 'svg',
-        viebox: options.viebox,
-        path: [...options.path],
-      })
-    );
+      link.insertAdjacentElement('beforeend', span);
 
-    if (this.options.position) {
-      this.handleEvent();
-    }
-  };
+      small.appendChild(link);
 
-  path = (paths, viebox) => {
-    let svgElement = '';
-    let path = '';
-    for (let i = 0; i < paths.length; i++) {
-      svgElement = `background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${viebox}'`;
-
-      let element = '';
-      Object.keys(paths[i]).map((key) => {
-        let val =
-          key === 'fill' ? paths[i][key].replace('#', '%23') : paths[i][key];
-        element += ` ${key}='${val}'`;
-      });
-      path += `%3E%3Cpath ${element}%3E%3C/path`;
-    }
-    return `${svgElement}${path}%3E%3C/svg%3E`;
-  };
-
-  iconSmall = (icons) => {
-    const speedDialAction = this.select('action');
-    const sortIcon = icons.sort((a, b) => a.id - b.id);
-    let stepTrans = this.options.steps * sortIcon.length + 50;
-
-    for (let i = 0; i < sortIcon.length; i++) {
-      const { className, name, viebox, url, path, target } = sortIcon[i];
-      const extendClass = className || '';
-      const speedDialItem = this.element({
-        el: `item ${extendClass}`,
-        type: 'button',
-        ariaLabel: icons[i].ariaLabel,
-        style: `transition-delay: ${stepTrans}ms;`,
-      });
-
-      let options = url ? { type: 'a', url, target } : { type: 'div' };
-
-      const speedDialItemButton = this.element({
-        el: 'button--small',
-        ...options,
-      });
-
-      const speedDialItemByttonDiv = this.element({
-        type: 'div',
-        style: this.path([...path], viebox),
-      });
-
-      speedDialItemButton.appendChild(speedDialItemByttonDiv);
-
-      speedDialItemByttonDiv.insertAdjacentHTML(
-        'afterend',
-        `<span style='${this.tipPosition(
-          this.options.data.position,
-          this.options.data.direction
-        )}'>${name}</span>`
-      );
-
-      speedDialItem.appendChild(speedDialItemButton);
-      speedDialAction.appendChild(speedDialItem);
 
       stepTrans -= this.options.steps;
-    }
-  };
+    });
+
+    return container;
+  }
+
+  buttonTop = () => {
+    const { data, icons, bgColor } = this.options;
+    const buttonTop = document.createElement('button');
+    buttonTop.classList.add('speed-dial__top');
+    buttonTop.setAttribute('data-position', data.position);
+    buttonTop.setAttribute('aria-label', icons.iconTop.ariaLabel || 'scroll to top');
+
+    const divEl = document.createElement('div');
+    divEl.className = this.top;
+    divEl.setAttribute('style', `background-color:${icons.iconTop.color || bgColor};`);
+
+    const topIcon = this.svgUse('icon__top', icons.iconTop.symbol);
+    divEl.insertAdjacentHTML('beforeend', topIcon);
+
+    buttonTop.appendChild(divEl);
+
+    return buttonTop;
+  }
+
+  modal = () => {
+    const modal = document.createElement('div');
+    modal.className = 'speed-dial__modal';
+    this.speedDial.insertAdjacentElement('afterend', modal);
+  }
 
   tipPosition = (position, direction) => {
     const pos = this.options.sPos;
@@ -220,42 +161,23 @@ class SpeedDial {
     return style;
   };
 
-  modal = () => {
-    const speedDialBox = this.select('speed-dial');
-    const modal = document.createElement('div');
-    modal.className = 'speed-dial-modal';
-    speedDialBox.insertAdjacentElement('afterend', modal);
-  };
-
   showScrollButton = () => {
-    const speedDialBox = this.select('speed-dial');
     const { position, topBtn } = this.options;
-    const buttonTop = this.select(topBtn);
+    const buttonTop = document.querySelector(topBtn);
     const scrollCheck = window.pageYOffset > position ? true : false;
 
     buttonTop.classList[scrollCheck ? 'add' : 'remove']('show');
-    speedDialBox.classList[scrollCheck ? 'add' : 'remove']('margin-bottom');
+    this.speedDial.classList[scrollCheck ? 'add' : 'remove']('margin-bottom');
   };
 
-  handleEvent = () => {
-    window.addEventListener('scroll', this.showScrollButton);
-    window.addEventListener('load', this.showScrollButton);
-
-    const buttonTop = this.select(this.options.topBtn);
-    buttonTop.addEventListener('click', (event) => {
-      event.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
+  handleEvent = (event) => {
+    event.stopPropagation();
+    const button = event.target;
+    if (button.className !== this.top) return;
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
     });
-
-    if (this.options.visibility) {
-      this.speedDialBox.classList.add('speed-dial-active');
-      this.speedDialRoot.addEventListener('click', () => {
-        this.speedDialBox.classList.toggle('speed-dial-active');
-      });
-    }
   };
 }
 
