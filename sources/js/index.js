@@ -36,7 +36,6 @@ class SpeedDial {
       this.speedDial.classList.add(this.active);
 
       this.speedDial.addEventListener('click', (event) => {
-        console.log(event.target.className);
         if (event.target.className !== this.root) return;
         this.speedDial.classList.toggle(this.active);
       });
@@ -73,7 +72,6 @@ class SpeedDial {
     let stepTrans = steps * sortIcon.length + 50;
 
     elements.map(element => {
-      console.log(element);
       const { symbol, className, ariaLabel, target, url } = element;
       const small = document.createElement('button');
       small.classList.add('item', symbol);
