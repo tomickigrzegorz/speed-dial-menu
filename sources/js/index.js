@@ -4,9 +4,9 @@ class SpeedDial {
   constructor(options) {
     this.options = { ...defaultOptions, ...options };
 
-    this.active = 'speed-dial-active';
-    this.root = 'speed-dial__button--root';
-    this.top = 'top-container';
+    this.active = 'speed-dial__active';
+    this.root = 'speed-dial__button-root';
+    this.top = 'speed-dial__top-container';
 
     this.speedDial = document.createElement('div');
     this.speedDial.setAttribute('data-position', this.options.data.position);
@@ -64,7 +64,7 @@ class SpeedDial {
     const { data, icons, steps } = this.options;
 
     const container = document.createElement('div');
-    container.className = 'action';
+    container.className = 'speed-dial__action';
     container.setAttribute('data-direction', data.direction);
 
     const elements = icons.iconsSmall;
@@ -74,7 +74,7 @@ class SpeedDial {
     elements.map(element => {
       const { symbol, className, ariaLabel, target, url } = element;
       const small = document.createElement('button');
-      small.classList.add('item', symbol);
+      small.classList.add('speed-dial__item', symbol);
       if (ariaLabel) {
         small.setAttribute('aria-label', ariaLabel);
       }
@@ -164,7 +164,7 @@ class SpeedDial {
     const buttonTop = document.querySelector(topBtn);
     const scrollCheck = window.pageYOffset > position ? true : false;
 
-    buttonTop.classList[scrollCheck ? 'add' : 'remove']('show');
+    buttonTop.classList[scrollCheck ? 'add' : 'remove']('speed-dial__show');
     this.speedDial.classList[scrollCheck ? 'add' : 'remove']('margin-bottom');
   };
 
