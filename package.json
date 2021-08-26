@@ -1,6 +1,6 @@
 {
   "name": "speed-dial",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "You can set a button in every corner of the page and display smaller buttons in each direction",
   "main": "docs/speedDial.min.js",
   "browser": "docs/speedDial.umd.min.js",
