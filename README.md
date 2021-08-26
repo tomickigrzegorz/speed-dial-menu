@@ -18,16 +18,15 @@
 
 See the demo - [example](https://tomik23.github.io/speed-dial-menu/)
 
-
 > A clean css version with no dependencies is also available -> [speed-dial-css](https://github.com/tomik23/speed-dial-menu/tree/speed-dial-css)
 
-
-
 ## Clone the repo and install dependencies
+
 ```bash
-git clone 
+git clone
 cd speed-dial-menu
 ```
+
 ```js
 yarn
 // or
@@ -35,20 +34,27 @@ npm i
 ```
 
 ## How to run
+
 Dev
+
 ```js
 yarn dev
 // or
 npm run dev
 ```
+
 Prod
+
 ```js
 yarn prod
 // or
 npm run prod
 ```
+
 ## Add a group of svg items
+
 > the best place is right after opening the `<body>`
+
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="menu" viewBox="0 0 32 32">
@@ -65,54 +71,59 @@ npm run prod
   </symbol>
 </svg>
 ```
+
 ## Configuration json
+
 ```js
 const speedIcons = {
-    iconPlus: {
-      symbol: 'menu',
-      color: '#1976d2', // not required
-      ariaLabel: 'show social buttons' // not required
+  iconPlus: {
+    symbol: "menu",
+    color: "#1976d2", // not required
+    ariaLabel: "show social buttons", // not required
+  },
+  iconTop: {
+    symbol: "top",
+    color: "red", // not required
+    ariaLabel: "scroll to top", // not required
+  },
+  iconsSmall: [
+    {
+      id: 1,
+      symbol: "lightning",
+      url: "https://url.com", // not required
+      target: "_blank", // not required
+      tooltipText: "lightning", // nor required
+      className: "lightning", // not required
+      ariaLabel: "open lightning", // not required
     },
-    iconTop: {
-      symbol: 'top',
-      color: 'red', // not required
-      ariaLabel: 'scroll to top' // not required
+    {
+      id: 2,
+      symbol: "wind",
+      className: "wind", // not required
+      tooltipText: "wind", // nor required
+      ariaLabel: "open wind ;)", // not required
     },
-    iconsSmall: [
-      {
-        id: 1,
-        symbol: 'lightning',
-        url: 'https://url.com', // not required
-        target: '_blank', // not required
-        className: 'lightning', // not required
-        ariaLabel: 'open lightning', // not required
-      },
-      {
-        id: 2,
-        symbol: 'wind',
-        className: 'wind', // not required
-        ariaLabel: 'open wind ;)', // not required
-      }
-    ]
-  }
+  ],
+};
 ```
 
-key | type | require | description
----- | ------- | ----- | -----------
-id | number | ✔ | This element is used to show the order of items with icons
-symbol | string | ✔ | Symbol id name from svg
-url | string | | The Url specifies the link's destination, not required
-target | string | | _blank/_self/_parent/_top, not required
-className | string | | An additional class after which we can make events, not required
-ariaLabel | string | | An aria-label is added to button elements
-color | string | | Color will be used for the main button or top button
+| key         | type   | require | description                                                      |
+| ----------- | ------ | ------- | ---------------------------------------------------------------- |
+| id          | number | ✔       | This element is used to show the order of items with icons       |
+| symbol      | string | ✔       | Symbol id name from svg                                          |
+| url         | string |         | The Url specifies the link's destination, not required           |
+| target      | string |         | \_blank/\_self/\_parent/\_top, not required                      |
+| className   | string |         | An additional class after which we can make events, not required |
+| ariaLabel   | string |         | An aria-label is added to button elements                        |
+| color       | string |         | Color will be used for the main button or top button             |
+| tooltipText | string |         | Text that appears when you hover over the small icons            |
 
 ## Sample configuration
 
 ```js
 new SpeedDial({
   icons: speedIcons,
-  // delay animation time for small buttons in ms 
+  // delay animation time for small buttons in ms
   steps: 50,
   // show button 'scroll-top' at 100px - not required
   position: 100,
@@ -125,25 +136,25 @@ new SpeedDial({
   // select the page corner you want is not required
   data: {
     // bottom-right, bottom-left, top-right, top-left
-    position: 'bottom-right',
+    position: "bottom-right",
     // top, bottom, left, right
-    direction: 'top'
-  }
+    direction: "top",
+  },
 });
 ```
 
-props | type | require | default | description
----- | ------- | :-----------: | ----------- | ---------------
-icons | object | ✔ |  | Icons object. Show the tooltip on the hover event
-steps | number |  | `50` | Show icons with a delay animation
-position | number |  | `null`  | Show button 'scroll-top-top' at 100px
-modal | boolean |   | `false`  | This option allows you to turn on the layer that is generated and inserted after the div with the speed-dial class. It appears when you hover over the large button. Color control and fade in and fade out possible in css
-visibility | boolean |  | `false`  | Smaller icons visible by default
-data/position | string |  | `bottom-right` | Sets the main button for us in one of the four corners [bottom-right, bottom-left, top-right, top-left]
-data/direction | string | | `top` | In which direction are the small icons to be displayed [top, bottom, left, right]
+| props          | type    | require | default        | description                                                                                                                                                                                                                 |
+| -------------- | ------- | :-----: | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| icons          | object  |    ✔    |                | Icons object. Show the tooltip on the hover event                                                                                                                                                                           |
+| steps          | number  |         | `50`           | Show icons with a delay animation                                                                                                                                                                                           |
+| position       | number  |         | `null`         | Show button 'scroll-top-top' at 100px                                                                                                                                                                                       |
+| modal          | boolean |         | `false`        | This option allows you to turn on the layer that is generated and inserted after the div with the speed-dial class. It appears when you hover over the large button. Color control and fade in and fade out possible in css |
+| visibility     | boolean |         | `false`        | Smaller icons visible by default                                                                                                                                                                                            |
+| data/position  | string  |         | `bottom-right` | Sets the main button for us in one of the four corners [bottom-right, bottom-left, top-right, top-left]                                                                                                                     |
+| data/direction | string  |         | `top`          | In which direction are the small icons to be displayed [top, bottom, left, right]                                                                                                                                           |
 
 ## Browsers support
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Opera | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/vivaldi/vivaldi_48x48.png" alt="Vivaldi" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Vivaldi |
-| --------- | --------- | --------- | --------- | --------- |
-| IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IE11, Edge                                                                                                                                                                                                      | last 2 versions                                                                                                                                                                                                   | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                           | last 2 versions                                                                                                                                                                                                   |
