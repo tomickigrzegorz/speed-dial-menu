@@ -17,7 +17,6 @@ class SpeedDial {
     if (this.options.position) {
       window.addEventListener("scroll", this.showScrollButton);
       window.addEventListener("load", this.showScrollButton);
-      document.addEventListener("click", this.handleEvent, false);
     }
 
     this.initial();
@@ -147,6 +146,8 @@ class SpeedDial {
     divEl.insertAdjacentHTML("beforeend", topIcon);
 
     buttonTop.appendChild(divEl);
+
+    buttonTop.addEventListener("click", this.handleEvent);
 
     return buttonTop;
   };
