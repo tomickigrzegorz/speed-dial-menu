@@ -6,8 +6,9 @@ module.exports = {
         // "debug": true,
         useBuiltIns: 'entry',
         corejs: 3,
+        loose: true,
       },
     ],
   ],
-  plugins: ['@babel/proposal-class-properties'],
+  plugins: [['@babel/proposal-class-properties', { loose: true }]],
 };
