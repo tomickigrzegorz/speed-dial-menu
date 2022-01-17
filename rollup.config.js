@@ -71,7 +71,7 @@ export default [
     output: {
       name: "SpeedDial",
       format: "iife",
-      sourcemap: true,
+      sourcemap: false,
       file: "dist/js/speed-dial.min.js",
       plugins: [terser(compressTarget(false))],
     },
