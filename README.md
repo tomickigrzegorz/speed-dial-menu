@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/package-json/v/tomik23/speed-dial-menu">
-  <img src="https://img.shields.io/github/size/tomik23/speed-dial-menu/docs/speedDial.min.js">
+  <img src="https://img.shields.io/github/size/tomik23/speed-dial-menu/dist/js/speed-dial.min.js">
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-green.svg">
   </a>
@@ -19,6 +19,34 @@
 See the demo - [example](https://tomik23.github.io/speed-dial-menu/)
 
 > A clean css version with no dependencies is also available -> [speed-dial-css](https://github.com/tomik23/speed-dial-menu/tree/speed-dial-css)
+
+## Installation
+
+### CDN
+
+#### CSS
+
+```html
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/tomik23/speed-dial-menu@1.1.0/dist/css/speed-dial.min.css"
+/>
+```
+
+#### JavaScript
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/tomik23/speed-dial-menu@1.1.0/dist/js/speed-dial.min.js"></script>
+```
+
+##### -- OR --
+
+Download from `dist` folder and insert to html:
+
+- speeddial.min.css
+- speeddial.min.js
+
+You can choose iife, umd and esm libraries and IE version
 
 ## Clone the repo and install dependencies
 
@@ -123,20 +151,29 @@ const speedIcons = {
 ```js
 new SpeedDial({
   icons: speedIcons,
+
   // delay animation time for small buttons in ms
   steps: 50,
+
   // show button 'scroll-top' at 100px - not required
   position: 100,
+
   // the option to enable the layer that covers the
   // page but is located under the speed-dial buttons
   modal: true,
+
+  // you can hidden scroll button to to top - not required
+  showTopBtn: true,
+
   // small icons visible after clicking on the main
   // button it doesn't hide on mouse out
   visibility: true,
+
   // select the page corner you want is not required
   data: {
     // bottom-right, bottom-left, top-right, top-left
     position: "bottom-right",
+
     // top, bottom, left, right
     direction: "top",
   },
@@ -150,11 +187,24 @@ new SpeedDial({
 | position       | number  |         | `null`         | Show button 'scroll-top-top' at 100px                                                                                                                                                                                       |
 | modal          | boolean |         | `false`        | This option allows you to turn on the layer that is generated and inserted after the div with the speed-dial class. It appears when you hover over the large button. Color control and fade in and fade out possible in css |
 | visibility     | boolean |         | `false`        | Smaller icons visible by default                                                                                                                                                                                            |
+| showTopBtn     | boolean |         | `true`         | You can hidden scroll button                                                                                                                                                                                                |
 | data/position  | string  |         | `bottom-right` | Sets the main button for us in one of the four corners [bottom-right, bottom-left, top-right, top-left]                                                                                                                     |
 | data/direction | string  |         | `top`          | In which direction are the small icons to be displayed [top, bottom, left, right]                                                                                                                                           |
 
-## Browsers support
+## Browser support
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Opera | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/vivaldi/vivaldi_48x48.png" alt="Vivaldi" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Vivaldi |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IE11, Edge                                                                                                                                                                                                      | last 2 versions                                                                                                                                                                                                   | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                           | last 2 versions                                                                                                                                                                                                   |
+speed-dial supports all major browsers including IE 10 and above
+
+Configuration for IE:
+
+### local files
+
+- dist/js/speed-dial.ie.min.js
+
+### cdn
+
+- https://cdn.jsdelivr.net/gh/tomik23/speed-dial-menu@1.1.0/dist/js/speed-dial.ie.min.js
+
+## License
+
+This project is available under the [MIT](https://opensource.org/licenses/mit-license.php) license.
