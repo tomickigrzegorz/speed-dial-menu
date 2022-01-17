@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap");
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -23,7 +25,7 @@ html {
 
 body {
   position: relative;
-  font-family: Proxima Nova Regular, Segoe UI, Roboto, Droid Sans, Helvetica Neue, Arial, sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
   min-height: 100%;
@@ -31,7 +33,30 @@ body {
   background-color: #f5f5f5;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-  height: 200%;
+  /* height: 200%; */
+}
+
+label {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 100px;
+  padding: 0 20px;
+  text-align: center;
+  transform: translateX(-50%);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: clamp(1.5rem, 2.5vw + 10px, 2.5rem);
+  font-weight: 700;
+  color: #5c5c5c;
 }
 
 .control {
@@ -39,78 +64,107 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: 30px;
-}
-
-.radio {
-  margin: 16px 0;
-  display: block;
-  cursor: pointer;
-}
-
-.radio input {
-  display: none;
-}
-
-.radio input + span {
-  line-height: 22px;
-  height: 22px;
-  padding-left: 22px;
-  display: block;
-  position: relative;
-}
-
-.radio input + span:not(:empty) {
-  padding-left: 30px;
-}
-
-.radio input + span:before,
-.radio input + span:after {
-  content: "";
-  width: 22px;
-  height: 22px;
-  display: block;
-  border-radius: 50%;
-  left: 0;
-  top: 0;
-  position: absolute;
-}
-
-.radio input + span:before {
-  background: #d1d7e3;
-  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
-}
-
-.radio input + span:after {
-  background: #fff;
-  transform: scale(0.78);
-  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
-}
-
-.radio input:checked + span:before {
-  transform: scale(1.04);
-  background: #5d9bfb;
-}
-
-.radio input:checked + span:after {
-  transform: scale(0.4);
-  transition: transform 0.3s ease;
-}
-
-.radio:hover input + span:before {
-  transform: scale(0.92);
-}
-
-.radio:hover input + span:after {
-  transform: scale(0.74);
-}
-
-.radio:hover input:checked + span:after {
-  transform: scale(0.4);
 }
 
 .github-corner {
   position: fixed;
   top: 0;
   right: 0;
+}
+
+.reset {
+  border: 7px solid #fff;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 90%;
+  letter-spacing: 2px;
+  background: #ff7a7a;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: inset 0 0 10px rgb(255, 0, 0);
+}
+
+.reset:hover {
+  animation: border-pulse 2s infinite;
+}
+
+@keyframes border-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(253, 126, 126);
+  }
+
+  70% {
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+
+.center-place {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.center-place svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+}
+
+.form-control {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+label {
+  transition: background 500ms ease;
+  border-radius: 5px;
+  background: #fff;
+}
+
+label:hover {
+  background: #e2e2e2;
+}
+
+label.active {
+  transition: background 500ms ease-in-out;
+  background: #7abfff;
+}
+
+label.active:hover {
+  background: #c1e1ff;
+}
+
+label svg {
+  pointer-events: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked + svg,
+input[type="radio"]:checked + svg {
+  fill: #fff;
 }
