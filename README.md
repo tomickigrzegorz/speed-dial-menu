@@ -43,8 +43,8 @@ See the demo - [example](https://tomik23.github.io/speed-dial-menu/)
 
 Download from `dist` folder and insert to html:
 
-- speeddial.min.css
-- speeddial.min.js
+- dist/css/speed-dial.min.css
+- dist/js/speed-dial.min.js
 
 You can choose iife, umd and esm libraries and IE version
 
