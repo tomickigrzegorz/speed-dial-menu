@@ -16,16 +16,6 @@
   --color-gray-light: #ddd;
 }
 
-*,
-:after,
-:before {
-  box-sizing: border-box;
-}
-
-svg:not(:root) {
-  overflow: hidden;
-}
-
 .speed-dial {
   $self: &;
   position: fixed;
@@ -159,8 +149,8 @@ svg:not(:root) {
 
   .icon {
     transition: all 100ms ease-in-out;
-    width: 25px;
-    height: 25px;
+    width: 32px;
+    height: 32px;
 
     &__plus {
       width: 35px;
