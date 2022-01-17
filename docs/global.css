@@ -33,7 +33,7 @@ body {
   background-color: #f5f5f5;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-  /* height: 200%; */
+  height: 200%;
 }
 
 label {
