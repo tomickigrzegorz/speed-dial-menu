@@ -1,5 +1,5 @@
-import { createModal, svgUse, buttonBig, buttonsSmall } from './util/functoins';
-import defaultOptions from './util/defaults';
+import { createModal, svgUse, buttonBig, buttonsSmall } from "./util/functoins";
+import defaultOptions from "./util/defaults";
 
 export default class SpeedDial {
   /**
@@ -7,28 +7,29 @@ export default class SpeedDial {
    * @param {Object} config
    */
   constructor(config) {
-    this.top = 'speed-dial__top-container';
+    this.top = "speed-dial__top-container";
 
     const options = { ...defaultOptions, ...config };
-    const root = 'speed-dial__button-root';
-    const active = 'speed-dial__active';
+    const root = "speed-dial__button-root";
+    const active = "speed-dial__active";
 
-    const speed = document.createElement('div');
-    speed.setAttribute('data-position', options.data.position);
-    speed.className = 'speed-dial';
+    const speed = document.createElement("div");
+    speed.setAttribute("data-position", options.data.position);
+    speed.className = "speed-dial";
 
-    document.body.insertAdjacentElement('beforeend', speed);
-
-    if (options.position) {
-      ['scroll', 'load'].map((type) => {
-        window.addEventListener(type, this.showScrollButton);
-      });
-    }
+    document.body.insertAdjacentElement("beforeend", speed);
 
     this.options = options;
     this.speedDial = speed;
 
     this.initial(options, speed, active, root);
+
+    if (!options.showTopBtn) return;
+    if (options.position) {
+      ["scroll", "load"].map((type) => {
+        window.addEventListener(type, this.showScrollButton);
+      });
+    }
   }
 
   /**
@@ -43,7 +44,9 @@ export default class SpeedDial {
     speed.appendChild(buttonBig(options, root));
     speed.appendChild(buttonsSmall(options));
 
-    speed.insertAdjacentElement('afterend', this.buttonTop(options));
+    if (options.showTopBtn) {
+      speed.insertAdjacentElement("afterend", this.buttonTop(options));
+    }
 
     if (modal) {
       createModal(speed);
@@ -52,7 +55,7 @@ export default class SpeedDial {
     if (visibility) {
       speed.classList.add(active);
 
-      speed.addEventListener('click', (event) => {
+      speed.addEventListener("click", (event) => {
         if (event.target.className !== root) return;
         speed.classList.toggle(active);
       });
@@ -67,27 +70,21 @@ export default class SpeedDial {
    */
   buttonTop = (options) => {
     const { data, icons, bgColor } = options;
-    const buttonTop = document.createElement('button');
-    buttonTop.classList.add('speed-dial__top');
-    buttonTop.setAttribute('data-position', data.position);
-    buttonTop.setAttribute(
-      'aria-label',
-      icons.iconTop.ariaLabel || 'scroll to top'
-    );
+    const buttonTop = document.createElement("button");
+    buttonTop.classList.add("speed-dial__top");
+    buttonTop.setAttribute("data-position", data.position);
+    buttonTop.ariaLabel = icons.iconTop.ariaLabel || "scroll to top";
 
-    const divEl = document.createElement('div');
+    const divEl = document.createElement("div");
     divEl.className = this.top;
-    divEl.setAttribute(
-      'style',
-      `background-color:${icons.iconTop.color || bgColor};`
-    );
+    divEl.style = `background-color:${icons.iconTop.color || bgColor};`;
 
-    const topIcon = svgUse('icon__top', icons.iconTop.symbol);
-    divEl.insertAdjacentHTML('beforeend', topIcon);
+    const topIcon = svgUse("icon__top", icons.iconTop.symbol);
+    divEl.insertAdjacentHTML("beforeend", topIcon);
 
     buttonTop.appendChild(divEl);
 
-    buttonTop.addEventListener('click', this.handleEvent);
+    buttonTop.addEventListener("click", this.handleEvent);
 
     return buttonTop;
   };
@@ -100,9 +97,9 @@ export default class SpeedDial {
     const buttonTop = document.querySelector(topBtn);
     const scrollCheck = window.pageYOffset > position ? true : false;
 
-    if (data.position == 'top-right' || data.position == 'top-left') return;
-    buttonTop.classList[scrollCheck ? 'add' : 'remove']('speed-dial__show');
-    this.speedDial.classList[scrollCheck ? 'add' : 'remove']('margin-bottom');
+    if (data.position == "top-right" || data.position == "top-left") return;
+    buttonTop?.classList[scrollCheck ? "add" : "remove"]("speed-dial__show");
+    this.speedDial.classList[scrollCheck ? "add" : "remove"]("margin-bottom");
   };
 
   /**
@@ -115,7 +112,7 @@ export default class SpeedDial {
     if (button.className !== this.top) return;
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 }

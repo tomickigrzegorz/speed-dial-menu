@@ -4,11 +4,12 @@ export default {
   stepTrans: 100,
   modal: false,
   position: null,
+  showTopBtn: true,
   visibility: false,
   data: {
-    position: 'bottom-right',
-    direction: 'top',
+    position: "bottom-right",
+    direction: "top",
   },
-  bgColor: '#cacaca',
-  topBtn: '.speed-dial__top',
+  bgColor: "#cacaca",
+  topBtn: ".speed-dial__top",
 };

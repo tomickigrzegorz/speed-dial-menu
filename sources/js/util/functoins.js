@@ -4,9 +4,9 @@
  * @param {HTMLElement} speedDial
  */
 const createModal = (speedDial) => {
-  const modal = document.createElement('div');
-  modal.className = 'speed-dial__modal';
-  speedDial.insertAdjacentElement('afterend', modal);
+  const modal = document.createElement("div");
+  modal.className = "speed-dial__modal";
+  speedDial.insertAdjacentElement("afterend", modal);
 };
 
 /**
@@ -28,13 +28,13 @@ const svgUse = (classname, symbol) =>
  * @returns String
  */
 const tipPosition = (position, direction, { sPos }) => {
-  const type = position.split('-')[1] === 'left' ? 'left' : 'right';
+  const type = position.split("-")[1] === "left" ? "left" : "right";
 
   let style;
-  if (position === 'top-left' || position === 'top-right') {
-    style = direction === 'bottom' ? `${type}: ${sPos}px` : `top: ${sPos}px`;
+  if (position === "top-left" || position === "top-right") {
+    style = direction === "bottom" ? `${type}: ${sPos}px` : `top: ${sPos}px`;
   } else {
-    style = direction === 'top' ? `${type}: ${sPos}px` : `bottom: ${sPos}px`;
+    style = direction === "top" ? `${type}: ${sPos}px` : `bottom: ${sPos}px`;
   }
 
   return style;
@@ -48,16 +48,16 @@ const tipPosition = (position, direction, { sPos }) => {
  * @returns HTMLElement
  */
 const buttonBig = ({ icons, bgColor }, root) => {
-  const button = document.createElement('button');
+  const button = document.createElement("button");
   button.className = root;
   button.style.fill = icons.iconBig.color || bgColor;
   button.setAttribute(
-    'aria-label',
-    icons.iconBig.ariaLabel || 'show social buttons'
+    "aria-label",
+    icons.iconBig.ariaLabel || "show social buttons"
   );
 
-  const svgBig = svgUse('icon__plus', icons.iconBig.symbol);
-  button.insertAdjacentHTML('beforeend', svgBig);
+  const svgBig = svgUse("icon__plus", icons.iconBig.symbol);
+  button.insertAdjacentHTML("beforeend", svgBig);
 
   return button;
 };
@@ -71,9 +71,9 @@ const buttonBig = ({ icons, bgColor }, root) => {
 const buttonsSmall = (options) => {
   const { data, icons, steps } = options;
 
-  const container = document.createElement('div');
-  container.className = 'speed-dial__action';
-  container.setAttribute('data-direction', data.direction);
+  const container = document.createElement("div");
+  container.className = "speed-dial__action";
+  container.setAttribute("data-direction", data.direction);
 
   const elements = icons.iconsSmall;
   const sortIcon = elements.sort((a, b) => a.id - b.id);
@@ -81,28 +81,28 @@ const buttonsSmall = (options) => {
 
   elements.map((element) => {
     const { symbol, className, ariaLabel, target, url } = element;
-    const small = document.createElement('button');
-    small.classList.add('speed-dial__item', symbol);
+    const small = document.createElement("button");
+    small.classList.add("speed-dial__item", symbol);
     if (ariaLabel) {
-      small.setAttribute('aria-label', ariaLabel);
+      small.ariaLabel = ariaLabel;
     }
-    small.setAttribute('style', `transition-delay: ${stepTrans}ms`);
+    small.style = `transition-delay: ${stepTrans}ms`;
 
     let link;
     if (url) {
-      link = document.createElement('a');
+      link = document.createElement("a");
     } else {
-      link = document.createElement('div');
+      link = document.createElement("div");
     }
 
-    link.className = 'speed-dial__button--small';
+    link.className = "speed-dial__button--small";
     if (className) {
       link.classList.add(className);
     }
 
     if (url) {
       link.href = url;
-      link.rel = 'noopener';
+      link.rel = "noopener";
     }
     if (target) {
       link.target = target;
@@ -110,18 +110,15 @@ const buttonsSmall = (options) => {
 
     container.appendChild(small);
 
-    const smallIcon = svgUse('icon__small', symbol);
-    link.insertAdjacentHTML('beforeend', smallIcon);
+    const smallIcon = svgUse("icon__small", symbol);
+    link.insertAdjacentHTML("beforeend", smallIcon);
 
     if (element.tooltipText) {
-      const span = document.createElement('span');
+      const span = document.createElement("span");
       span.textContent = element.tooltipText;
-      span.setAttribute(
-        'style',
-        tipPosition(data.position, data.direction, options)
-      );
+      span.style = tipPosition(data.position, data.direction, options);
 
-      link.insertAdjacentElement('beforeend', span);
+      link.insertAdjacentElement("beforeend", span);
     }
 
     small.appendChild(link);
