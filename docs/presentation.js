@@ -169,6 +169,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("click", (e) => {
+    e.preventDefault();
     let newPosition;
     let newDairection;
 
@@ -180,7 +181,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (
       !target.closest("label") ||
-      target.closest("label").classList.contains("disabled")
+      target.closest("label")?.classList.contains("disabled")
     )
       return;
 
