@@ -134,6 +134,7 @@ h1 {
 .disabled {
   cursor: not-allowed;
   opacity: 0.3;
+  pointer-events: none;
 }
 
 label {

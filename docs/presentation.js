@@ -144,7 +144,6 @@ window.addEventListener("DOMContentLoaded", () => {
     el.setAttribute("data-tippy-content", item["data-tippy-content"]);
 
     if (type) {
-      let checkedCheck;
       if (item.id === 2 || item.id === 4 || item.id === 9) {
         el.classList.add("active");
       } else if (item.input === "radio") {
@@ -169,7 +168,6 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("click", (e) => {
-    e.preventDefault();
     let newPosition;
     let newDairection;
 
